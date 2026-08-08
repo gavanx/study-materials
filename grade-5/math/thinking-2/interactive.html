@@ -64,6 +64,10 @@
   }
   .card.open .ans { display: block; }
   .ans b { color: #15803d; }
+  .q svg.inline-fig {
+    display: block; max-width: 55%; height: auto; margin: 10px auto 2px;
+  }
+  @media (max-width: 720px) { .q svg.inline-fig { max-width: 100%; } }
   .hint { font-size: 13px; color: #9ca3af; text-align: right; margin-top: 6px; }
   footer {
     display: flex; align-items: center; justify-content: center; gap: 12px;
@@ -78,6 +82,29 @@
   }
   .ghost-btn:active { background: var(--primary-bg); }
   .page-ind { font-size: 16px; color: var(--soft); font-weight: 600; min-width: 90px; text-align: center; }
+  .drawer-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.42);
+    z-index: 20; display: none;
+  }
+  .drawer-overlay.show { display: block; }
+  .drawer {
+    position: fixed; top: 0; left: 0; bottom: 0; width: 80%; max-width: 320px;
+    background: #fff; z-index: 21; overflow-y: auto;
+    transform: translateX(-100%); transition: transform .22s;
+    padding: 16px 12px 24px; box-shadow: 2px 0 12px rgba(0,0,0,.12);
+  }
+  .drawer.show { transform: translateX(0); }
+  .drawer h3 {
+    font-size: 14px; color: var(--soft); font-weight: 600;
+    margin: 14px 6px 6px; padding-bottom: 4px; border-bottom: 1px solid var(--card-border);
+  }
+  .drawer a {
+    display: block; padding: 12px 10px; font-size: 16px; color: var(--ink);
+    text-decoration: none; border-radius: 8px; line-height: 1.4;
+  }
+  .drawer a:active { background: var(--primary-bg); }
+  .drawer a.active { color: var(--primary); font-weight: 600; background: var(--primary-bg); }
+  .drawer .home-link { margin-top: 10px; color: var(--primary); font-weight: 600; }
   @media (max-width: 720px) {
     body { font-size: 17px; } header h1 { font-size: 16px; }
     .page-btn { min-width: 76px; min-height: 46px; font-size: 15px; }
@@ -88,9 +115,9 @@
 <body>
 
 <header>
-  <button class="page-btn" id="prevBtn" aria-label="上一页">‹ 上一页</button>
+  <button class="page-btn" id="menuBtn" aria-label="目录">☰ 目录</button>
   <h1 id="title">思维训练（二）</h1>
-  <button class="page-btn" id="nextBtn" aria-label="下一页">下一页 ›</button>
+  <button class="page-btn" id="homeBtn" aria-label="首页">🏠 首页</button>
 </header>
 
 <main id="view"></main>
@@ -102,10 +129,23 @@
   <button class="ghost-btn" id="toggleAllBtn">全部展开</button>
 </footer>
 
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<nav class="drawer" id="drawer">
+  <h3>本专题目录</h3>
+  <div id="drawerTopics"></div>
+  <h3>切换专题</h3>
+  <div id="drawerSiblings"></div>
+  <a class="home-link" id="drawerHome" href="https://gavanx.github.io/study-materials/">🏠 返回首页</a>
+</nav>
+
+<div id="svgLib" style="display:none"></div>
+
 <script>
 const pages = [{"title":"十一、容斥原理","idea":"重叠部分数了两遍，要减去；遗漏部分要补回来。","problems":[{"tag":"例","n":1,"level":"","text":"三（1）班 45 人，参加数学兴趣组的有 28 人，参加语文兴趣组的有 25 人，两组都参加的有 12 人。两组都没参加的有几人？","ans":"参加至少一组=28+25−12=41 人。两组都没参加=45−41=<b>4 人</b>。\n"},{"tag":"例","n":2,"level":"","text":"对 60 人调查显示：喜欢足球的 38 人，喜欢篮球的 32 人，喜欢排球的 26 人；同时喜欢足球和篮球的 20 人，同时喜欢篮球和排球的 14 人，同时喜欢足球和排球的 16 人；三种都喜欢的 8 人。三种都不喜欢的有几人？","ans":"三集合容斥公式：\n至少喜欢一种 = (38+32+26) − (20+14+16) + 8 = 96 − 50 + 8 = 54 人。\n三种都不喜欢 = 60−54 = <b>6 人</b>。\n"},{"tag":"练","n":1,"level":"","text":"100 人参加考试，语文及格 85 人，数学及格 78 人，两科都及格 70 人。两科都不及格几人？","ans":"至少一科及格=85+78−70=93 人。都不及格=100−93=<b>7 人</b>。\n"},{"tag":"练","n":2,"level":"","text":"某年级学生中，会骑自行车的有 89 人，会游泳的有 76 人，两样都会的有 58 人。已知全年级 120 人，两样都不会的有几人？","ans":"至少会一样=89+76−58=107 人。都不会=120−107=<b>13 人</b>。\n"},{"tag":"练","n":3,"level":"","text":"在 1~200 的自然数中，能被 2 或 3 整除的数有多少个？\n\n---","ans":"被 2 整除：⌊200÷2⌋=100；被 3 整除：⌊200÷3⌋=66；被 6 整除（重复）：⌊200÷6⌋=33。100+66−33=<b>133 个</b>。\n\n---\n\n"}]},{"title":"十二、抽屉原理","idea":"苹果比抽屉多时，必有抽屉里至少有两个苹果。关键是\"最不利情况\"——假设运气最差。","problems":[{"tag":"例","n":3,"level":"","text":"有红、黄、蓝、白四种颜色的小球各 10 个，放在一个袋子里。至少要摸出几个球，才能保证摸出两个同色的球？","ans":"最不利情况——前 4 个球各一种颜色，第 5 个球必与某个同色。要摸 <b>5 个</b>。\n"},{"tag":"例","n":4,"level":"","text":"任意 5 个自然数中，必有两个数之差是 4 的倍数，为什么？","ans":"除以 4 的余数只有 0、1、2、3 四种。5 个数中必有两个同余，它们之差是 4 的倍数。\n"},{"tag":"练","n":4,"level":"","text":"口袋里有黑、白、灰三种手套各 5 只（不分左右手），黑暗中至少要取几只才能保证取出一双同色的？","ans":"最不利——每色取 1 只（3 只），再取 1 只必与前某只同色。要取 <b>4 只</b>。\n"},{"tag":"练","n":5,"level":"","text":"从 1~10 这 10 个数中，至少取几个数，才能保证其中有两个数之和为 11？","ans":"和为 11 的配对：(1,10)(2,9)(3,8)(4,7)(5,6)，共 5 对。最不利——每对取 1 个，5 个数互不成对。再取任意 1 个必凑成 11。要取 <b>6 个</b>。\n"},{"tag":"练","n":6,"level":"提高","text":"在边长为 1 的正方形内任意放 5 个点。证明：必有两个点之间的距离不超过 √2/2。\n\n---","ans":"把正方形分成 4 个 1/2×1/2 小格。4 小格 × 5 点 → 必有两点落在同一小格内，距离 ≤ 对角线 = √2/2。\n\n---\n\n"}]},{"title":"十三、加法原理与乘法原理","idea":"分类用加法（不同方案选一个），分步用乘法（每一步都做完）。数图形是绝佳训练。","problems":[{"tag":"例","n":5,"level":"","text":"从甲地到乙地，可以坐火车（3 趟）、坐汽车（4 趟）或坐飞机（2 趟）。共有几种走法？","ans":"不同种类（分类用加法）：3+4+2 = <b>9 种</b>。\n"},{"tag":"例","n":6,"level":"","text":"从甲地到乙地有 3 条路，从乙地到丙地有 4 条路。从甲地经乙地到丙地，共有几种不同走法？","ans":"必须做完两步（分步用乘法）：3×4 = <b>12 种</b>。\n"},{"tag":"例","n":7,"level":"数线段","text":"一条直线上有 8 个点（包括两端），一共可以数出多少条线段？","ans":"每条线段由两个端点唯一确定。在 8 个点中选 2 个：8×7÷2 = <b>28 条</b>。\n"},{"tag":"例","n":8,"level":"数长方形","text":"一个 3 行 × 4 列的方格图，一共包含多少个长方形（含正方形）？","ans":"长方形由两横两竖确定。3 行有 4 条横线（含边界），4 列有 5 条竖线（含边界）。选 2 横=C(4,2)=6，选 2 竖=C(5,2)=10。6×10=<b>60 个</b>。\n"},{"tag":"练","n":7,"level":"","text":"0、1、2、3、4 五个数字，能组成多少个没有重复数字的三位偶数？","ans":"三位偶数→个位为 0、2、4。\n\n- 个位=0：百位 4 选 1，十位 3 选 1 → 4×3=12\n- 个位=2：百位不能是 0 和 2→3 选 1，十位（含 0）→3 选 1 → 9\n- 个位=4：同理 9\n- 总计：12+9+9=<b>30 个</b>。\n"},{"tag":"练","n":8,"level":"","text":"如图有 4 条横线和 5 条竖线交叉成网格，从左上角走到右下角，只能向右或向下，有多少种不同走法？","ans":"从左上到右下，需向右 4 步 + 向下 3 步 = 7 步，其中 3 步向下。C(7,3)=<b>35 种</b>。\n"},{"tag":"练","n":9,"level":"数三角形","text":"将一个正六边形的六个顶点两两连接（包括对角线），一共能数出多少个三角形？\n\n---","ans":"正六边形 6 个顶点，选 3 个=C(6,3)=20。但要减去三点共线的情况——三条对角线各含 4 点，每条中 C(4,3)=4 种共线选法。20−3×4=<b>8 个三角形</b>。\n\n---\n\n"}]},{"title":"十四、数字谜（竖式谜）","idea":"根据竖式结构和进位关系，逆向推出每个数字。数感 + 试错 + 约束排除。","problems":[{"tag":"例","n":9,"level":"","text":"填出下式中各字母代表的数字（不同字母代表不同数字）。\n\n```\nA B\n+  B A\n--------\nC D C\n```\n\n（即 AB + BA = CDC，其中 A、B、C、D 各不同）","ans":"AB + BA = 10A+B + 10B+A = 11(A+B) = CDC。CDC 是三位数，由 11 的倍数生成，百位=个位，十位不同。11(A+B) 百位=C，十位=D，个位=C。\n\n11×(A+B) 的值：A+B 至少 3（不同数字），至多 17。列出：11×3=33=033(不对)，×4=44，×5=55，×6=66，×7=77，×8=88，×9=99，×10=110，×11=121，×12=132，×13=143，×14=154，×15=165，×16=176，×17=187。\n\n从中选出 CDC 型（百位=个位且不同数字）：121(C=1,D=2,A+B=11)、143 不对、154 不对、165 不对、176 不对、187 不对。等一等，121 的 C≠D ✓。\n\n再验证 A+B=11 且 A≠B。A+B=11 有(2,9)(3,8)(4,7)(5,6) 四组。例如 29+92=121，38+83=121 等。<b>A+B=11 均可</b>。\n"},{"tag":"例","n":10,"level":"乘式谜","text":"```\nA B\n×     C\n--------\nD E F\n```\n\n已知 A × C 不进位，B × C 的个位 = F，十位 = E。求各字母代表的数字（不同字母不同数字）。","ans":"AB × C = DEF。A×C 不进位 → A 和 C 都较小。B×C = 两位数（十位 D，个位 F），且乘积为三位数。\n\n例如：13×7=091 不对(百位0)。实际：24×3=72(两位不够)，12×9=108(进1位不对)。试 17×8=136 ×，19×8=152(1+进=2 ×)。正确思路：B×C 的十位=D，A×C+进位=E。\n\n举例：38×4=152(C=4,A=3,B=8,D=1,E=5,F=2)，验证：A×C=12 不进×。3×4=12 不进位 ✓。B×C=32 → 个位 2=F ✓，十位 3+D=E→3+1=4≠E=5 ×。\n\n再试：25×4=100（不是三个不同数字）。重来：19×5=95(太短)。36×4=144(D=E×)。27×4=108：A×C=8 不进, B×C=28(D=2 F=8), E=0+进=2=A×C+进=8+2=10→0 ✓。所以 27×4=108。<b>A=2,B=7,C=4,D=1,E=0,F=8</b>（DEF 互不相同 ✓）。\n"},{"tag":"练","n":10,"level":"","text":"在下面的减法竖式中，不同汉字代表不同数字，求出它们。\n\n```\n学习好\n−  好学\n--------\n好好好\n```","ans":"设\"学\"\"习\"\"好\"分别代表 a,b,c。\n\n```\n100a+10b+c\n−  10a+c\n----------\n100c+10c+c\n```\n\n即 (100a+10b+c) − (10a+c) = 100c+10c+c = 111c。\n90a+10b+c−c = 111c → 90a+10b = 111c。\n10(9a+b) = 111c。\n111=3×37，所以右边是 111×c，左边是 10×(9a+b)。只有 c=0 时右边=0 → 9a+b=0 → a=b=0，无意义。\nc=0 不成立。试试 c=不为 0…… 实际上需要 10(9a+b)=111c，左边是 10 的倍数，所以 111c 也是 10 的倍数。111c 是 10 的倍数 → c 必须是 10 的倍数 → c=0。回到死胡同。\n\n重新看题：竖式减法\"学习好 − 好学 = 好好好\"。这是三个汉字相减得到三个相同汉字，不太可能。可能是\"学习好 − 好学 = 好好\"？按原文\"好好好\"处理——\n\n若 a,b,c 不要求互异：10(9a+b)=111c。111c 末尾为 0 → c=0。9a+b=0 → a=b=0 也不成。此题需改为\"学习好 − 好学 = 好好\"才有经典解。\n\n不妨修改题意重新出：\n\n<b>练 10 修正</b>：\n```\nABC\n−   AB\n-------\nAAA\n```\n求三位数 ABC。（A、B、C 各不相同）\n\n解：100A+10B+C − (10A+B) = 111A。\n90A+9B+C = 111A → 9B+C = 21A。\nA 为 1~9，B,C 为 0~9。枚举 A=1:9B+C=21，B=2,C=3 → ABC=123。\nA=2:9B+C=42，B=4,C=6 → 246。A≥3:9B+C≥63 → B≥7 → 9B≥63，C=0 时 9×7=63=21×3 ✓。所以还有 A=3,B=7,C=0 → 370；A=4,B=9,C=3 → 493。\n所有解：<b>123、246、370、493</b>。\n"},{"tag":"练","n":11,"level":"提高","text":"```\nABCD\n×     9\n--------\nDCBA\n```\n求四位数 ABCD。（A、B、C、D 各不相同）\n\n---","ans":"ABCD × 9 = DCBA，且 A≠B≠C≠D。\n\n四位×9 还是四位，所以 A=1（若 A≥2 则积≥18000 超四位）。则 D×9 个位为 1 → D=9。\n\n原式：1BC9 × 9 = 9CB1。\n\n9×9=81，进 8。C×9+8 的个位 = B……一步步推：\n\n9×C + 8 = 10×X + B（X 为进位）。\n9×B + X = C（因为百位上 9×B+进位 的个位等于 C，十位看的是结果的十位 C）。\n\n两个方程：\n① 9C + 8 = 10X + B\n② 9B + X = C\n\n由②：C = 9B + X。代入①：9(9B+X)+8 = 10X+B → 81B+9X+8 = 10X+B → 80B+8 = X。\n\nX 是进位（0~8），B 是数字（0~9 且 ≠1,9）。80B+8 = X ≤ 8 → B=0,X=8。\n\nC = 9×0+8 = 8。\n四位数为 <b>1089</b>。验证：1089×9=9801=D(C)(B)(A)→ 四位全部反转 ✓。\n\n<b>A=1, B=0, C=8, D=9。</b>\n\n---\n\n"}]},{"title":"十五、等差数列进阶","idea":"公差 ×（项数−1）+ 首项 = 末项；和 =（首项+末项）× 项数 ÷ 2。关键：数清项数。","problems":[{"tag":"例","n":11,"level":"","text":"求数列 5, 8, 11, 14, …, 的第 50 项。","ans":"首项=5，公差=3。第 50 项 = 5 + (50−1)×3 = 5+147 = <b>152</b>。\n"},{"tag":"例","n":12,"level":"","text":"计算 1 + 3 + 5 + 7 + … + 99。","ans":"首项=1，末项=99，公差=2。项数=(99−1)÷2+1=50。和=(1+99)×50÷2=<b>2500</b>。\n"},{"tag":"例","n":13,"level":"","text":"有一个 7 层的空心方阵，最外层每边 20 人。这个方阵共有多少人？","ans":"这是空心方阵（方阵 = 正方形排列）。7 层，最外层每边 20 人。总人数 = 外层边长的平方 − 内层边长的平方。\n\n最内层每边 = 20 − (7−1)×2 = 20−12 = 8。总人数 = 20²−8² = 400−64 = <b>336 人</b>。\n\n（另一种思路：最外层人数=20×4−4=76，每向内一层减少 8 人。总和=(76+…+(76−6×8))=(76+28)×7÷2=104×7÷2=364 不对。因为最内层不是边长为负……正确的内层边长：最内层每边=20−2×6=8，最内层人数=8×4−4=28。和=(76+28)×7÷2=104×3.5=364。让我再确认：7 层等差，首项 76，末项 28，项数 7 → (76+28)×7÷2 = 104×7÷2 = 364。而 20²−8²=400−64=336。364≠336，问题出在\"空心方阵\"公式。正确公式：总人数=(最外层每边人数 − 层数) × 层数 × 4 = (20−7)×7×4 = 13×28 = 364。所以答案是 <b>364 人</b>。和等差法一致，20²−8² 那个不对是因为方阵每向内一层边长减 2 但\"每边人数\"和\"方阵边长\"不是同一个概念。正确用等差法。）\n"},{"tag":"练","n":12,"level":"","text":"有一堆钢管，最上层 3 根，最下层 15 根，每层比上一层多 1 根。共几根？","ans":"首项 3，末项 15，公差 1。项数=(15−3)÷1+1 = 13 层。和=(3+15)×13÷2=<b>117 根</b>。\n"},{"tag":"练","n":13,"level":"","text":"求所有除以 4 余 1 的两位数的和。","ans":"除以 4 余 1 的两位数：13, 17, 21, …, 97。首项 13，末项 97，公差 4。项数=(97−13)÷4+1 = 22。和=(13+97)×22÷2 = 110×11 = <b>1210</b>。\n"},{"tag":"练","n":14,"level":"提高","text":"已知一个等差数列前 5 项和为 65，前 10 项和为 230。求首项和公差。\n\n---","ans":"设首项 a，公差 d。\n\n前 5 项和：S₅ = (a+a+4d)×5÷2 = (2a+4d)×5÷2 = 5a+10d = 65 → a+2d = 13。\n前 10 项和：S₁₀ = (a+a+9d)×10÷2 = 10a+45d = 230 → 2a+9d = 46。\n\n解方程组：\na+2d = 13\n2a+9d = 46\n\n消 a：(2a+9d) − 2(a+2d) = 46−26 → 5d = 20 → d = 4。\na = 13−8 = 5。\n\n<b>首项=5，公差=4。</b>\n\n---\n\n"}]},{"title":"十六、定义新运算","idea":"题目给一个新符号和规则，必须严格按规则计算，注意运算顺序和括号。","problems":[{"tag":"例","n":14,"level":"","text":"定义 a※b = 3a − 2b。计算 (5※3)※2。","ans":"先算 5※3 = 3×5−2×3 = 15−6 = 9。\n再算 9※2 = 3×9−2×2 = 27−4 = <b>23</b>。\n"},{"tag":"例","n":15,"level":"","text":"定义 a☆b = (a + b) × (a − b)。已知 x☆3 = 16，求 x。","ans":"x☆3 = (x+3)(x−3) = x²−9 = 16 → x² = 25 → x = <b>5 或 −5</b>。\n"},{"tag":"练","n":15,"level":"","text":"定义 a⊙b = a × b + a + b。计算 4⊙5⊙2。","ans":"先算 4⊙5 = 4×5+4+5 = 20+9 = 29。\n再算 29⊙2 = 29×2+29+2 = 58+31 = <b>89</b>。\n\n注意：⊙ 不满足结合律，必须从左到右。（除非题目另有规定）\n"},{"tag":"练","n":16,"level":"","text":"定义 a△b = (a + 1) × (b − 1)。已知 m△3 = 24，求 m。","ans":"m△3 = (m+1)×(3−1) = (m+1)×2 = 24 → m+1 = 12 → m = <b>11</b>。\n"},{"tag":"练","n":17,"level":"提高","text":"定义新运算\"∗\"满足 — 对任意 a,b，有 a∗(b + c)= a∗b + a∗c，且 3∗2 = 12，3∗5 = 30。求 3∗7。\n\n---","ans":"由 a∗(b+c) = a∗b + a∗c 知对固定 a，\"∗\"对右边满足加法分配律。则：\n\n3∗7 = 3∗(2+5) = 3∗2 + 3∗5 = 12 + 30 = <b>42</b>。\n\n---\n\n"}]},{"title":"十七、周期问题","idea":"余数定位。第 n 个是什么 → n ÷ 周期长度，看余数。","problems":[{"tag":"例","n":16,"level":"","text":"有一串珠子按\"红红黄蓝绿绿\"的规律排列。第 202 颗珠子是什么颜色？","ans":"周期 = \"红红黄蓝绿绿\" → 6 个一组。202÷6 = 33 组余 4。第 4 个是 <b>蓝色</b>。\n"},{"tag":"例","n":17,"level":"","text":"\"ABCDEFGABCDEFG…\" 第 2026 个字母是什么？","ans":"周期=7。2026÷7=289 组余 3。第 3 个字母是 <b>C</b>。\n"},{"tag":"例","n":18,"level":"","text":"2026 年 7 月 9 日是星期四，2026 年 12 月 25 日是星期几？","ans":"7/9~12/25：7 月剩 22 天 + 8 月 31 + 9 月 30 + 10 月 31 + 11 月 30 + 12 月 25 = 169 天。169÷7 = 24 周余 1 天。星期四 + 1 = <b>星期五</b>。\n"},{"tag":"例","n":19,"level":"","text":"3²⁰²⁶ 的个位数字是多少？（分析 3 的幂次个位周期性: 3,9,7,1,3,9,7,1,…）","ans":"3 的幂次个位周期为 4：3¹=3, 3²=9, 3³=7, 3⁴=1, 3⁵=3, …。2026÷4 = 506 组余 2 → 个位=<b>9</b>。\n"},{"tag":"练","n":18,"level":"","text":"6²⁰²⁶ − 2²⁰²⁶ 的个位数字是几？","ans":"6 的任意次幂个位始终是 6。2²⁰²⁶ 的个位周期为 4（2,4,8,6），2026÷4=506 余 2 → 个位 4。6−4=2 但个位减法不需借位 → <b>2</b>。\n"},{"tag":"练","n":19,"level":"","text":"一列数：1, 2, 3, 2, 1, 2, 3, 2, 1, 2, 3, 2, …。前 100 个数的和是多少？\n\n---","ans":"周期为 4：\"1,2,3,2\" 重复。100÷4=25 组完整。每组和=1+2+3+2=8。总和=25×8=<b>200</b>。\n\n---\n\n"}]},{"title":"十八、流水行船问题","idea":"顺水速度 = 静水速度 + 水流速度；逆水速度 = 静水速度 − 水流速度。注意\"相遇时水速抵消\"的性质。","problems":[{"tag":"例","n":20,"level":"","text":"一艘客轮在静水中每小时行 18 km，长江水流每小时 4 km。这艘客轮从武汉到九江顺水而下用了 12 小时。从九江返回武汉逆水要几小时？","ans":"顺水速度 = 18+4 = 22 km/h。武汉→九江距离 = 22×12 = 264 km。\n逆水速度 = 18−4 = 14 km/h。返回时间 = 264÷14 ≈ 18.86 h ≈ <b>18 小时 52 分钟</b>。\n"},{"tag":"例","n":21,"level":"","text":"两艘货船在相距 180 km 的河道中同时相向而行，甲船在静水中每小时行 20 km，乙船在静水中每小时行 16 km，水流速度每小时 4 km。它们几小时后相遇？","ans":"两船相对而行——甲顺水（20+4=24），乙逆水（16−4=12）。\n但注意！两船在同一条河中相向而行，水速对两船的相对速度影响相互抵消：\n甲顺水，乙逆水，相对速度 = (20+4)+(16−4) = 20+16 = 36 km/h。\n相遇时间 = 180÷36 = <b>5 小时</b>。\n"},{"tag":"练","n":20,"level":"","text":"一只小船在静水中每小时行 12 km，它在一条河中逆水航行 8 小时走了 64 km。这条河的水流速度是多少？","ans":"逆水速度 = 64÷8 = 8 km/h。水流速度 = 静水−逆水 = 12−8 = <b>4 km/h</b>。\n"},{"tag":"练","n":21,"level":"提高","text":"一艘轮船从 A 港到 B 港顺水要 6 小时，逆水要 9 小时。已知水流速度每小时 3 km，A、B 两港相距多少千米？\n\n---","ans":"设 A、B 相距 S km，静水速度 V km/h。\n\n顺水：S = (V+3)×6 → V+3 = S/6\n逆水：S = (V−3)×9 → V−3 = S/9\n\n(V+3)−(V−3) = S/6 − S/9 → 6 = S(1/6−1/9) = S(3/54) = S/18 → S = <b>108 km</b>。\n\n---\n\n"}]},{"title":"十九、页码与数字问题","idea":"按位数分段统计。1~9 每个数字用 1 个数位，10~99 每个用 2 个，100~999 每个用 3 个。","problems":[{"tag":"例","n":22,"level":"","text":"一本书共 200 页。排这本书的页码一共用了多少个数字？","ans":"1~9：9 个数字；10~99：90×2=180 个；100~200：101×3=303 个。总计 9+180+303 = <b>492 个</b>。\n"},{"tag":"例","n":23,"level":"","text":"排一本书的页码用了 732 个数字。这本书有多少页？","ans":"1~9 用了 9 个，10~99 用了 180 个，共 189 个。剩余 732−189=543 个数字，三位数每页 3 个数字，543÷3=181 页。页码=9+90+181=<b>280 页</b>。\n"},{"tag":"例","n":24,"level":"","text":"在 1~100 中，数字\"1\"一共出现了多少次？","ans":"分段统计：\n- 个位是 1：1,11,21,…,91（每 10 个数 1 个，100 个中 10 个）→ 10 次\n- 十位是 1：10~19 → 10 次\n- 百位是 1：100 → 1 次\n- 总计：10+10+1=<b>21 次</b>。\n"},{"tag":"练","n":22,"level":"","text":"在 1~300 中，数字\"5\"一共出现了多少次？","ans":"分段。\n- 个位是 5（1~300）：每 10 个 1 个，300÷10=30 → 30 次\n- 十位是 5（1~300）：50~59（10 个），150~159（10 个），250~259（10 个）→ 30 次\n- 百位是 5：无（到 300 为止）\n- 总计：<b>60 次</b>。\n"},{"tag":"练","n":23,"level":"提高","text":"给一本故事书编页码，数字\"0\"一共出现了 77 次。这本书最少有多少页？\n\n---","ans":"设页数为 N。\n\n- 1~99：个位 0 出现 9 次（10,20,…,90）；十位 0 不出现（01 不算）。共 9 次。\n- 100~N：设 N 范围在 100~999。\n\n百位为 0 不计（三位数百位不可能是 0）。\n个位为 0：每 10 个 1 个。100~N 中，⌊N/10⌋−9 个。\n十位为 0：每 100 个出现 10 个（×0×）。\n100~N 中，先完整百数组：前 (N−99) 个三位数中有 ⌊(N−99)/100⌋×10 个。加上最后不满一百的部分中十位为 0 的个数。\n\n使总 0 出现次数 = 77。枚举：N=400 时个位 0=40−9=31，十位 0=3×10=30，百位 0=0。总计 9+31+30=70。还差 7。N=410 时十位=40 个，个位=41−9=32，总计 9+40+32=81&gt;77。\n\nN=406：百位 0=0（不影响），十位 0 在 100~399 完整 3 百：3×10=30 个；400~406 无十位 0（400 不算，十位也为 0 应算！400/401/402/403/404/405/406 中十位为 0 的全都有：400,401,…,406 共 7 个）。十位 0 总计 30+7=37。\n个位 0：每 10 个 1 个：40 个整十数中前 40 个（100~406 含 40 个整十数：100,110,…,400）。确切为 40−9=31 个。不对，需精确：⌊406/10⌋=40，减去 1~99 中的 9 个 → 31 个。\n\n总计：9+37+31=<b>77</b>。N=406 页。\n\n---\n\n"}]},{"title":"二十、数论入门（质数·因数·整除）","idea":"质数、合数、分解质因数、整除特征——这是四升五进阶数学的\"底层功夫\"。","problems":[{"tag":"例","n":25,"level":"","text":"一个两位数，个位与十位数字互换后得到的新数比原数大 27。原数可能是哪些数？","ans":"设原数十位 a，个位 b。原数=10a+b。新数=10b+a。(10b+a)−(10a+b) = 9b−9a = 9(b−a) = 27 → b−a = 3。a 为 1~6，b=a+3。\n\n可能的原数：<b>14, 25, 36, 47, 58, 69</b>。\n"},{"tag":"例","n":26,"level":"","text":"把 120 分解质因数。它有多少个不同的因数？","ans":"120 = 2³ × 3 × 5。因数个数 = (3+1)×(1+1)×(1+1) = 4×2×2 = <b>16 个</b>。\n\n16 个因数为：1, 2, 3, 4, 5, 6, 8, 10, 12, 15, 20, 24, 30, 40, 60, 120。\n"},{"tag":"练","n":24,"level":"","text":"两个质数之和是 99，求这两个质数。","ans":"两质数和为奇数 99 → 必有一质数为 2（唯一偶质数）。另一个=97 ✓（97 是质数）。<b>2 和 97</b>。\n"},{"tag":"练","n":25,"level":"","text":"已知四位数 5□6□ 能同时被 3 和 4 整除，这个四位数最大是多少？","ans":"5□6□ 被 4 整除 → 末两位 6□ 被 4 整除 → □ 为 0/4/8。\n被 3 整除 → 各位和 5+□₁+6+□₂ 被 3 整除。\n\n枚举（求最大，从大到小试）：\n- □₁=9, □₂=8：末位 68 被 4 整除 ✓。各位和 5+9+6+8=28 不整除 3 ×\n- □₁=9, □₂=4：末位 64 整除 4 ✓。各位和 5+9+6+4=24 整除 3 ✓ → <b>5964</b>\n"},{"tag":"练","n":26,"level":"提高","text":"一个自然数除 200 余 4，除 300 余 6，除 500 余 10。这个数最大是多少？","ans":"设这个数为 n。\n\n- n|200−4 ⇒ n|196\n- n|300−6 ⇒ n|294\n- n|500−10 ⇒ n|490\n\n求 196、294、490 的最大公约数。\n\n196 = 2²×7²\n294 = 2×3×7²\n490 = 2×5×7²\n\nGCD = 2×7² = <b>98</b>。\n\n验证：196÷98=2，294÷98=3，490÷98=5。最大是 <b>98</b>。\n"},{"tag":"练","n":27,"level":"提高","text":"把 1~9 九个数字分成三组，每组三个数。要使每组中三个数的乘积相等，应怎样分？\n\n---\n\n# 参考答案","ans":"1~9 乘积 = 362880 = ∏。每组乘积为 ∏/3 = 362880/3 = 120960。等一等——三组乘积相等，每组积 × 每组积 × 每组积 = 1×2×…×9 = 362880。设每组积为 K，K³ = 362880。K 为整数 → 362880 需为立方数。\n\n362880 = 2⁷×3⁴×5×7。各指数需被 3 整除 → 7%3=1，不够。实际上每组相等乘积\"恰好相等\"需要整体乘积是立方数。362880=27×32×5×7×9×8×…=362880。检查：362880 的质因数分解：362880=9! = 2⁷×3⁴×5×7。7 的指数=1 不能被 3 整除 → 不等于整数立方。\n\n所以\"三组乘积完全相等\"不可能。题目意思应该是<b>尽量接近</b>——或将题目改为\"每组三个数的乘积之和\"或类似。这题传统上来自\"1~9 分三组使乘积相等\"有一定变体，实际不可行。\n\n若理解为\"乘积相等\"放宽为找到整数近似，或改为<b>和相等</b>的经典分法：\n1~9 和=45，每组和 15。经典：{1,5,9}{2,6,7}{3,4,8} 或 {1,6,8}{2,4,9}{3,5,7}。\n\n---\n\n\n- 本补充篇对应基础篇未覆盖的 <b>10 个经典思维方向</b>，建议逐个方向通关\n- 标记\"提高\"的题目（练 6/11/14/17/21/23/26/27）有一定挑战性，适合学有余力时做\n- 每个方向至少完成例题 + 前 2 道练习后再进入下一方向\n- 与基础篇一样：做完让孩子<b>讲一遍思路</b>，能讲明白才算真掌握\n- 建议顺序：十一（容斥）→ 十二（抽屉）→ 十三（计数）→ 十四（数字谜）→ 十五（等差数列）→ 十六（定义新运算）→ 十七（周期）→ 十八（流水行船）→ 十九（页码数字）→ 二十（数论入门）\n"}]}];
+const siblings = [];
+const homeUrl = 'https://gavanx.github.io/study-materials/';
 
-let cur = 0;
+let cur = Math.min(Math.max((parseInt(new URLSearchParams(location.search).get('page')) || 0), 0), pages.length - 1);
 const view = document.getElementById('view');
 const titleEl = document.getElementById('title');
 const pageInd = document.getElementById('pageInd');
@@ -128,15 +168,23 @@ function render() {
     const tagCls = pr.tag === '例' ? 'example' : 'practice';
     const badge = pr.level ? ' <span class="badge">' + escapeHtml(pr.level) + '</span>' : '';
     const open = allOpen ? ' open' : '';
+    const img = pr.img ? '<svg class="inline-fig" data-src="' + escapeHtml(pr.img) + '"></svg>' : '';
     html += '<div class="card' + open + '" data-i="' + idx + '">'
       + '<div class="q"><span class="tag ' + tagCls + '">' + pr.tag + pr.n + '</span>'
-      + escapeHtml(pr.text) + badge
+      + escapeHtml(pr.text) + badge + img
       + '<div class="hint">' + (open ? '点一下收起答案' : '点一下看答案') + '</div>'
       + '<div class="ans">' + pr.ans + '</div>'
       + '</div></div>';
   });
 
   view.innerHTML = html;
+
+  view.querySelectorAll('svg[data-src]').forEach(holder => {
+    const lib = document.getElementById('svgLib');
+    if (!lib) return;
+    const tpl = lib.querySelector('#' + holder.getAttribute('data-src'));
+    if (tpl) holder.replaceWith(tpl.cloneNode(true));
+  });
 
   view.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
@@ -155,8 +203,40 @@ function toggleAll() {
   render();
 }
 
-document.getElementById('prevBtn').addEventListener('click', prevPage);
-document.getElementById('nextBtn').addEventListener('click', nextPage);
+function goHome() { location.href = homeUrl; }
+
+function showDrawer(show) {
+  document.getElementById('drawerOverlay').classList.toggle('show', show);
+  document.getElementById('drawer').classList.toggle('show', show);
+}
+
+function fillDrawer() {
+  const topics = document.getElementById('drawerTopics');
+  topics.innerHTML = '';
+  pages.forEach((p, i) => {
+    const a = document.createElement('a');
+    a.textContent = p.title;
+    a.href = '?page=' + i;
+    a.className = i === cur ? 'active' : '';
+    a.addEventListener('click', e => { e.preventDefault(); cur = i; render(); showDrawer(false); });
+    topics.appendChild(a);
+  });
+  const sb = document.getElementById('drawerSiblings');
+  if (siblings && siblings.length) {
+    sb.innerHTML = '';
+    siblings.forEach(s => {
+      const a = document.createElement('a');
+      a.textContent = s.name;
+      a.href = s.url;
+      sb.appendChild(a);
+    });
+  }
+}
+
+document.getElementById('menuBtn').addEventListener('click', () => { fillDrawer(); showDrawer(true); });
+document.getElementById('drawerOverlay').addEventListener('click', () => showDrawer(false));
+document.getElementById('homeBtn').addEventListener('click', goHome);
+document.getElementById('drawerHome').addEventListener('click', goHome);
 document.getElementById('prevBtnB').addEventListener('click', prevPage);
 document.getElementById('nextBtnB').addEventListener('click', nextPage);
 toggleAllBtn.addEventListener('click', toggleAll);

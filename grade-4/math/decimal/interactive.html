@@ -64,6 +64,10 @@
   }
   .card.open .ans { display: block; }
   .ans b { color: #15803d; }
+  .q svg.inline-fig {
+    display: block; max-width: 55%; height: auto; margin: 10px auto 2px;
+  }
+  @media (max-width: 720px) { .q svg.inline-fig { max-width: 100%; } }
   .hint { font-size: 13px; color: #9ca3af; text-align: right; margin-top: 6px; }
   footer {
     display: flex; align-items: center; justify-content: center; gap: 12px;
@@ -78,6 +82,29 @@
   }
   .ghost-btn:active { background: var(--primary-bg); }
   .page-ind { font-size: 16px; color: var(--soft); font-weight: 600; min-width: 90px; text-align: center; }
+  .drawer-overlay {
+    position: fixed; inset: 0; background: rgba(0,0,0,.42);
+    z-index: 20; display: none;
+  }
+  .drawer-overlay.show { display: block; }
+  .drawer {
+    position: fixed; top: 0; left: 0; bottom: 0; width: 80%; max-width: 320px;
+    background: #fff; z-index: 21; overflow-y: auto;
+    transform: translateX(-100%); transition: transform .22s;
+    padding: 16px 12px 24px; box-shadow: 2px 0 12px rgba(0,0,0,.12);
+  }
+  .drawer.show { transform: translateX(0); }
+  .drawer h3 {
+    font-size: 14px; color: var(--soft); font-weight: 600;
+    margin: 14px 6px 6px; padding-bottom: 4px; border-bottom: 1px solid var(--card-border);
+  }
+  .drawer a {
+    display: block; padding: 12px 10px; font-size: 16px; color: var(--ink);
+    text-decoration: none; border-radius: 8px; line-height: 1.4;
+  }
+  .drawer a:active { background: var(--primary-bg); }
+  .drawer a.active { color: var(--primary); font-weight: 600; background: var(--primary-bg); }
+  .drawer .home-link { margin-top: 10px; color: var(--primary); font-weight: 600; }
   @media (max-width: 720px) {
     body { font-size: 17px; } header h1 { font-size: 16px; }
     .page-btn { min-width: 76px; min-height: 46px; font-size: 15px; }
@@ -88,9 +115,9 @@
 <body>
 
 <header>
-  <button class="page-btn" id="prevBtn" aria-label="上一页">‹ 上一页</button>
+  <button class="page-btn" id="menuBtn" aria-label="目录">☰ 目录</button>
   <h1 id="title">小数的意义与加减法</h1>
-  <button class="page-btn" id="nextBtn" aria-label="下一页">下一页 ›</button>
+  <button class="page-btn" id="homeBtn" aria-label="首页">🏠 首页</button>
 </header>
 
 <main id="view"></main>
@@ -102,10 +129,23 @@
   <button class="ghost-btn" id="toggleAllBtn">全部展开</button>
 </footer>
 
+<div class="drawer-overlay" id="drawerOverlay"></div>
+<nav class="drawer" id="drawer">
+  <h3>本专题目录</h3>
+  <div id="drawerTopics"></div>
+  <h3>切换专题</h3>
+  <div id="drawerSiblings"></div>
+  <a class="home-link" id="drawerHome" href="https://gavanx.github.io/study-materials/">🏠 返回首页</a>
+</nav>
+
+<div id="svgLib" style="display:none"></div>
+
 <script>
 const pages = [{"title":"一、小数的意义和读写","idea":"小数是分数的另一种写法——十分位上的数表示十分之几，百分位表示百分之几。小数点左边是整数部分，右边依次是十分位、百分位、千分位。读小数先读整数部分，再依次读小数部分各位数字。","problems":[{"tag":"例","n":1,"level":"","text":"0.6 表示十分之几？3.45 是由几个一、几个十分之一和几个百分之一组成的？","ans":"0.9 + 9.9 + 99.9 + 999.9 + 0.4 = (1 − 0.1) + (10 − 0.1) + (100 − 0.1) + (1000 − 0.1) + 0.4 = 1111 − 0.4 + 0.4 = <b>1111</b>。（0.4 = 4 个 0.1，正好补回）"},{"tag":"例","n":2,"level":"","text":"（1）7/10　　（2）23/100　　（3）0.09　　（4）0.405","ans":"小数点向右移动一位 → 扩大 10 倍，比原数大 9 倍。原数 = 1.35 ÷ 9 = <b>0.15</b>。"},{"tag":"例","n":3,"level":"提高","text":"一个三位小数，十分位上的数字是 4，是百分位上数字的 2 倍，千分位上的数字比十分位小 3。这个三位小数最大是多少？","ans":"甲小数点向右移一位 = 甲 × 10 = 乙，所以乙 = 10 × 甲。甲 + 乙 = 11 × 甲 = 27.5，甲 = 27.5 ÷ 11 = <b>2.5</b>，乙 = <b>25</b>。"},{"tag":"练","n":1,"level":"","text":"0.37 表示百分之几？它是由几个十分之一和几个百分之一组成的？","ans":"0.7 + 7.7 + 77.7 + 0.9 = (0.7 + 0.3) + (7.7 + 0.3) + (77.7 + 0.3) = 1 + 8 + 78 = <b>87</b>。（0.9 拆成 3 个 0.3 分别补）"},{"tag":"练","n":2,"level":"","text":"（1）三点零六　　（2）零点四零五　　（3）二十点零九","ans":"小数点向左移动一位 → 缩小 10 倍，比原数少 9 份。原数 = 3.24 ÷ 9 × 10 = 0.36 × 10 = <b>3.6</b>。"},{"tag":"练","n":3,"level":"提高","text":"一个数由 5 个一、7 个十分之一和 3 个千分之一组成，这个数是多少？","ans":"乙 = 10 × 甲，甲 + 乙 = 11 × 甲 = 30.8，甲 = 30.8 ÷ 11 = <b>2.8</b>，乙 = <b>28</b>。"}]},{"title":"二、小数的大小比较与近似数","idea":"比较大小先比整数部分，整数部分相同再逐位比小数部分；<b>末尾添 0 或去 0，小数大小不变</b>（性质）。求近似数用四舍五入：看保留位数的后一位，满 5 进 1。单位换算按进率：1 米=10 分米=100 厘米、1 元=10 角=100 分、1 千克=1000 克。","problems":[{"tag":"例","n":1,"level":"","text":"（1）0.7 ○ 0.70　　（2）1.32 ○ 1.23　　（3）0.09 ○ 0.1","ans":"0.9 + 9.9 + 99.9 + 999.9 + 0.4 = (1 − 0.1) + (10 − 0.1) + (100 − 0.1) + (1000 − 0.1) + 0.4 = 1111 − 0.4 + 0.4 = <b>1111</b>。（0.4 = 4 个 0.1，正好补回）"},{"tag":"例","n":2,"level":"","text":"把 3.256 保留一位小数和两位小数，各是多少？","ans":"小数点向右移动一位 → 扩大 10 倍，比原数大 9 倍。原数 = 1.35 ÷ 9 = <b>0.15</b>。"},{"tag":"例","n":3,"level":"提高","text":"（1）3 米 5 厘米 = （　）米　　（2）2.4 元 = （　）元（　）角　　（3）500 克 = （　）千克","ans":"甲小数点向右移一位 = 甲 × 10 = 乙，所以乙 = 10 × 甲。甲 + 乙 = 11 × 甲 = 27.5，甲 = 27.5 ÷ 11 = <b>2.5</b>，乙 = <b>25</b>。"},{"tag":"练","n":1,"level":"","text":"（1）0.5 ○ 0.49　　（2）6.80 ○ 6.8　　（3）0.101 ○ 0.11","ans":"0.7 + 7.7 + 77.7 + 0.9 = (0.7 + 0.3) + (7.7 + 0.3) + (77.7 + 0.3) = 1 + 8 + 78 = <b>87</b>。（0.9 拆成 3 个 0.3 分别补）"},{"tag":"练","n":2,"level":"","text":"把 4.996 精确到十分位和百分位，各是多少？","ans":"小数点向左移动一位 → 缩小 10 倍，比原数少 9 份。原数 = 3.24 ÷ 9 × 10 = 0.36 × 10 = <b>3.6</b>。"},{"tag":"练","n":3,"level":"提高","text":"一个三位小数\"四舍五入\"后是 3.80，这个三位小数最大是多少？最小是多少？","ans":"乙 = 10 × 甲，甲 + 乙 = 11 × 甲 = 30.8，甲 = 30.8 ÷ 11 = <b>2.8</b>，乙 = <b>28</b>。"}]},{"title":"三、小数的加减法","idea":"<b>小数点对齐</b>（也就是相同数位对齐），从末位开始算，哪一位不够就向前一位借 1；和、差的小数点要和上面的小数点对齐。整数混合运算的顺序同样适用。","problems":[{"tag":"例","n":1,"level":"","text":"（1）3.45 + 1.32　　（2）5.6 − 2.47","ans":"0.9 + 9.9 + 99.9 + 999.9 + 0.4 = (1 − 0.1) + (10 − 0.1) + (100 − 0.1) + (1000 − 0.1) + 0.4 = 1111 − 0.4 + 0.4 = <b>1111</b>。（0.4 = 4 个 0.1，正好补回）"},{"tag":"例","n":2,"level":"","text":"计算 0.7 + 0.63，并验算。","ans":"小数点向右移动一位 → 扩大 10 倍，比原数大 9 倍。原数 = 1.35 ÷ 9 = <b>0.15</b>。"},{"tag":"例","n":3,"level":"提高","text":"4.56 + 3.7 − 2.8 等于多少？先估一估，再计算。","ans":"甲小数点向右移一位 = 甲 × 10 = 乙，所以乙 = 10 × 甲。甲 + 乙 = 11 × 甲 = 27.5，甲 = 27.5 ÷ 11 = <b>2.5</b>，乙 = <b>25</b>。"},{"tag":"练","n":1,"level":"","text":"（1）1.8 + 2.75　　（2）10 − 3.46","ans":"0.7 + 7.7 + 77.7 + 0.9 = (0.7 + 0.3) + (7.7 + 0.3) + (77.7 + 0.3) = 1 + 8 + 78 = <b>87</b>。（0.9 拆成 3 个 0.3 分别补）"},{"tag":"练","n":2,"level":"","text":"计算 5.32 − 0.48 + 1.16。","ans":"小数点向左移动一位 → 缩小 10 倍，比原数少 9 份。原数 = 3.24 ÷ 9 × 10 = 0.36 × 10 = <b>3.6</b>。"},{"tag":"练","n":3,"level":"提高","text":"两个数的和是 12.5，其中一个加数是 7.68，另一个加数是多少？两个数的差呢？","ans":"乙 = 10 × 甲，甲 + 乙 = 11 × 甲 = 30.8，甲 = 30.8 ÷ 11 = <b>2.8</b>，乙 = <b>28</b>。"}]},{"title":"四、小数简算与巧算","idea":"整数运算律对小数同样适用——加法交换律、结合律、减法性质。先观察哪些小数能凑整：0.25+0.75=1、0.5+0.5=1、1.25×8=10。<b>末尾能凑成整数的两个小数优先相加</b>。","problems":[{"tag":"例","n":1,"level":"凑整","text":"简便计算：3.72 + 5.8 + 6.28","ans":"0.9 + 9.9 + 99.9 + 999.9 + 0.4 = (1 − 0.1) + (10 − 0.1) + (100 − 0.1) + (1000 − 0.1) + 0.4 = 1111 − 0.4 + 0.4 = <b>1111</b>。（0.4 = 4 个 0.1，正好补回）"},{"tag":"例","n":2,"level":"连减性质","text":"简便计算：18.5 − 3.62 − 6.38","ans":"小数点向右移动一位 → 扩大 10 倍，比原数大 9 倍。原数 = 1.35 ÷ 9 = <b>0.15</b>。"},{"tag":"例","n":3,"level":"高难","text":"简便计算：12.5 × 8.8","ans":"甲小数点向右移一位 = 甲 × 10 = 乙，所以乙 = 10 × 甲。甲 + 乙 = 11 × 甲 = 27.5，甲 = 27.5 ÷ 11 = <b>2.5</b>，乙 = <b>25</b>。"},{"tag":"例","n":4,"level":"高难","text":"简便计算：9.99 + 99.9 + 999 + 0.11","ans":"小数点向左移动两位 → 缩小 100 倍，得到的数是原数的 1/100，比原数少 99 份。原数 = 39.6 ÷ 99 × 100 = 0.4 × 100 = <b>40</b>。"},{"tag":"练","n":1,"level":"","text":"简便计算：4.56 + 7.89 + 5.44","ans":"0.7 + 7.7 + 77.7 + 0.9 = (0.7 + 0.3) + (7.7 + 0.3) + (77.7 + 0.3) = 1 + 8 + 78 = <b>87</b>。（0.9 拆成 3 个 0.3 分别补）"},{"tag":"练","n":2,"level":"","text":"简便计算：25.7 − 8.43 − 1.57","ans":"小数点向左移动一位 → 缩小 10 倍，比原数少 9 份。原数 = 3.24 ÷ 9 × 10 = 0.36 × 10 = <b>3.6</b>。"},{"tag":"练","n":3,"level":"提高","text":"简便计算：1.25 × 3.2 × 2.5","ans":"乙 = 10 × 甲，甲 + 乙 = 11 × 甲 = 30.8，甲 = 30.8 ÷ 11 = <b>2.8</b>，乙 = <b>28</b>。"}]},{"title":"五、小数竞赛挑战","idea":"小数题的突破口和整数一样——凑整、配对、补数。注意：① 一个数连续减去几个数，等于减去它们的和；② 求\"范围\"问题，抓住\"整数部分和小数部分分开看\"；③ 小数点移动几位的本质，是把这个数扩大或缩小到原来的几倍。","problems":[{"tag":"例","n":1,"level":"补数凑整","text":"简便计算：0.9 + 9.9 + 99.9 + 999.9 + 0.4","ans":"0.9 + 9.9 + 99.9 + 999.9 + 0.4 = (1 − 0.1) + (10 − 0.1) + (100 − 0.1) + (1000 − 0.1) + 0.4 = 1111 − 0.4 + 0.4 = <b>1111</b>。（0.4 = 4 个 0.1，正好补回）"},{"tag":"例","n":2,"level":"小数点移动","text":"一个小数，把小数点向右移动一位后，比原数大 1.35。原数是多少？","ans":"小数点向右移动一位 → 扩大 10 倍，比原数大 9 倍。原数 = 1.35 ÷ 9 = <b>0.15</b>。"},{"tag":"例","n":3,"level":"竞赛","text":"两个数的和是 27.5，甲数的小数点向右移动一位就和乙数相等。甲、乙各是多少？","ans":"甲小数点向右移一位 = 甲 × 10 = 乙，所以乙 = 10 × 甲。甲 + 乙 = 11 × 甲 = 27.5，甲 = 27.5 ÷ 11 = <b>2.5</b>，乙 = <b>25</b>。"},{"tag":"例","n":4,"level":"竞赛","text":"一个数的小数点向左移动两位，得到的数比原数小 39.6。原数是多少？","ans":"小数点向左移动两位 → 缩小 100 倍，得到的数是原数的 1/100，比原数少 99 份。原数 = 39.6 ÷ 99 × 100 = 0.4 × 100 = <b>40</b>。"},{"tag":"练","n":1,"level":"","text":"简便计算：0.7 + 7.7 + 77.7 + 0.9","ans":"0.7 + 7.7 + 77.7 + 0.9 = (0.7 + 0.3) + (7.7 + 0.3) + (77.7 + 0.3) = 1 + 8 + 78 = <b>87</b>。（0.9 拆成 3 个 0.3 分别补）"},{"tag":"练","n":2,"level":"","text":"一个小数，把小数点向左移动一位后，比原数小 3.24。原数是多少？","ans":"小数点向左移动一位 → 缩小 10 倍，比原数少 9 份。原数 = 3.24 ÷ 9 × 10 = 0.36 × 10 = <b>3.6</b>。"},{"tag":"练","n":3,"level":"竞赛","text":"甲乙两数的和是 30.8，甲数的小数点向右移动一位正好等于乙数。甲、乙各是多少？","ans":"乙 = 10 × 甲，甲 + 乙 = 11 × 甲 = 30.8，甲 = 30.8 ÷ 11 = <b>2.8</b>，乙 = <b>28</b>。"},{"tag":"练","n":4,"level":"竞赛","text":"一个数的小数点向右移动两位，得到的数比原数大 356.4。原数是多少？","ans":"小数点向右移动两位 → 扩大 100 倍，比原数大 99 倍。原数 = 356.4 ÷ 99 = <b>3.6</b>。"}]}];
+const siblings = [];
+const homeUrl = 'https://gavanx.github.io/study-materials/';
 
-let cur = 0;
+let cur = Math.min(Math.max((parseInt(new URLSearchParams(location.search).get('page')) || 0), 0), pages.length - 1);
 const view = document.getElementById('view');
 const titleEl = document.getElementById('title');
 const pageInd = document.getElementById('pageInd');
@@ -128,15 +168,23 @@ function render() {
     const tagCls = pr.tag === '例' ? 'example' : 'practice';
     const badge = pr.level ? ' <span class="badge">' + escapeHtml(pr.level) + '</span>' : '';
     const open = allOpen ? ' open' : '';
+    const img = pr.img ? '<svg class="inline-fig" data-src="' + escapeHtml(pr.img) + '"></svg>' : '';
     html += '<div class="card' + open + '" data-i="' + idx + '">'
       + '<div class="q"><span class="tag ' + tagCls + '">' + pr.tag + pr.n + '</span>'
-      + escapeHtml(pr.text) + badge
+      + escapeHtml(pr.text) + badge + img
       + '<div class="hint">' + (open ? '点一下收起答案' : '点一下看答案') + '</div>'
       + '<div class="ans">' + pr.ans + '</div>'
       + '</div></div>';
   });
 
   view.innerHTML = html;
+
+  view.querySelectorAll('svg[data-src]').forEach(holder => {
+    const lib = document.getElementById('svgLib');
+    if (!lib) return;
+    const tpl = lib.querySelector('#' + holder.getAttribute('data-src'));
+    if (tpl) holder.replaceWith(tpl.cloneNode(true));
+  });
 
   view.querySelectorAll('.card').forEach(card => {
     card.addEventListener('click', () => {
@@ -155,8 +203,40 @@ function toggleAll() {
   render();
 }
 
-document.getElementById('prevBtn').addEventListener('click', prevPage);
-document.getElementById('nextBtn').addEventListener('click', nextPage);
+function goHome() { location.href = homeUrl; }
+
+function showDrawer(show) {
+  document.getElementById('drawerOverlay').classList.toggle('show', show);
+  document.getElementById('drawer').classList.toggle('show', show);
+}
+
+function fillDrawer() {
+  const topics = document.getElementById('drawerTopics');
+  topics.innerHTML = '';
+  pages.forEach((p, i) => {
+    const a = document.createElement('a');
+    a.textContent = p.title;
+    a.href = '?page=' + i;
+    a.className = i === cur ? 'active' : '';
+    a.addEventListener('click', e => { e.preventDefault(); cur = i; render(); showDrawer(false); });
+    topics.appendChild(a);
+  });
+  const sb = document.getElementById('drawerSiblings');
+  if (siblings && siblings.length) {
+    sb.innerHTML = '';
+    siblings.forEach(s => {
+      const a = document.createElement('a');
+      a.textContent = s.name;
+      a.href = s.url;
+      sb.appendChild(a);
+    });
+  }
+}
+
+document.getElementById('menuBtn').addEventListener('click', () => { fillDrawer(); showDrawer(true); });
+document.getElementById('drawerOverlay').addEventListener('click', () => showDrawer(false));
+document.getElementById('homeBtn').addEventListener('click', goHome);
+document.getElementById('drawerHome').addEventListener('click', goHome);
 document.getElementById('prevBtnB').addEventListener('click', prevPage);
 document.getElementById('nextBtnB').addEventListener('click', nextPage);
 toggleAllBtn.addEventListener('click', toggleAll);
