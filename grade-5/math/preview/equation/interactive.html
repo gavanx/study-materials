@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>简易方程预习（交互版）</title>
+<style>
+  :root {
+    --primary: #2563eb; --primary-bg: #eff6ff; --ink: #111827; --soft: #6b7280;
+    --card-border: #e5e7eb; --ans-bg: #f0fdf4; --ans-border: #86efac;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body {
+    font-family: "PingFang SC", "Noto Sans CJK SC", "Songti SC", serif;
+    font-size: 18px; color: var(--ink); background: #f8fafc;
+    display: flex; flex-direction: column;
+  }
+  header {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+    padding: 10px 14px; background: #fff;
+    border-bottom: 1px solid var(--card-border);
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: 0 1px 4px rgba(0,0,0,.05);
+  }
+  header h1 { font-size: 19px; text-align: center; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .page-btn {
+    flex: 0 0 auto; min-width: 92px; min-height: 50px; border: none; border-radius: 12px;
+    background: var(--primary); color: #fff; font-size: 17px; font-weight: 600;
+    cursor: pointer; touch-action: manipulation;
+  }
+  .page-btn:active { transform: scale(.96); background: #1d4ed8; }
+  .page-btn:disabled { background: #cbd5e1; }
+  main { flex: 1; overflow-y: auto; padding: 16px 14px 20px; max-width: 900px; width: 100%; margin: 0 auto; }
+  .section-title { font-size: 24px; margin-bottom: 8px; padding-left: 12px; border-left: 5px solid var(--primary); }
+  .idea {
+    font-size: 16.5px; color: var(--soft); background: var(--primary-bg);
+    border-radius: 10px; padding: 12px 14px; margin-bottom: 18px; line-height: 1.65;
+  }
+  .idea b { color: var(--primary); }
+  .card {
+    background: #fff; border: 1px solid var(--card-border); border-radius: 14px;
+    padding: 16px 16px 14px; margin-bottom: 16px;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+    cursor: pointer; touch-action: manipulation; transition: box-shadow .12s;
+  }
+  .card:active { box-shadow: 0 1px 1px rgba(0,0,0,.12); }
+  .card .q { font-size: 19px; line-height: 1.7; }
+  .tag {
+    display: inline-block; font-size: 15px; font-weight: 700; color: #fff;
+    border-radius: 7px; padding: 2px 9px; margin-right: 8px; vertical-align: 1px;
+  }
+  .tag.example { background: var(--primary); }
+  .tag.practice { background: #0d9488; }
+  .badge {
+    display: inline-block; font-size: 13px; font-weight: 600; color: #b45309;
+    background: #fff7ed; border: 1px solid #fdba74; border-radius: 6px;
+    padding: 0 6px; margin-left: 6px; vertical-align: 2px;
+  }
+  .ans {
+    display: none; margin-top: 12px; padding: 13px 15px;
+    background: var(--ans-bg); border: 1px solid var(--ans-border); border-radius: 10px;
+    font-size: 17.5px; line-height: 1.75;
+  }
+  .card.open .ans { display: block; }
+  .ans b { color: #15803d; }
+  .hint { font-size: 13px; color: #9ca3af; text-align: right; margin-top: 6px; }
+  footer {
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+    padding: 12px 14px; background: #fff; border-top: 1px solid var(--card-border);
+    position: sticky; bottom: 0; z-index: 10;
+  }
+  footer .page-btn { min-width: 110px; }
+  .ghost-btn {
+    min-height: 44px; border: 1px solid var(--primary); border-radius: 12px;
+    background: #fff; color: var(--primary); font-size: 16px; padding: 0 16px;
+    cursor: pointer; touch-action: manipulation;
+  }
+  .ghost-btn:active { background: var(--primary-bg); }
+  .page-ind { font-size: 16px; color: var(--soft); font-weight: 600; min-width: 90px; text-align: center; }
+  @media (max-width: 720px) {
+    body { font-size: 17px; } header h1 { font-size: 16px; }
+    .page-btn { min-width: 76px; min-height: 46px; font-size: 15px; }
+    main { padding: 12px 10px 16px; } .card .q { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <button class="page-btn" id="prevBtn" aria-label="上一页">‹ 上一页</button>
+  <h1 id="title">简易方程预习</h1>
+  <button class="page-btn" id="nextBtn" aria-label="下一页">下一页 ›</button>
+</header>
+
+<main id="view"></main>
+
+<footer>
+  <button class="page-btn" id="prevBtnB">‹ 上一页</button>
+  <span class="page-ind" id="pageInd">1 / 1</span>
+  <button class="page-btn" id="nextBtnB">下一页 ›</button>
+  <button class="ghost-btn" id="toggleAllBtn">全部展开</button>
+</footer>
+
+<script>
+const pages = [{"title":"一、用字母表示数","idea":"用字母表示数，可以概括一类数量关系。例如\"哥哥比弟弟大 3 岁\"，弟弟 x 岁，哥哥就是 (x + 3) 岁。字母和数相乘时，<b>乘号可以省略，数写在字母前面</b>：a × 3 写作 3a；1 × a 写作 a。把具体数代入字母式子，就能算出结果。","problems":[{"tag":"例","n":1,"level":"","text":"一支笔 a 元，买 3 支要多少元？用含有字母的式子表示。","ans":"2x + 30 = 130，2x = 100，x = <b>50 本</b>。"},{"tag":"例","n":2,"level":"","text":"（1）x × 5　　（2）a × b　　（3）1 × y　　（4）m × 8 × 2","ans":"3x + 8 = 50，3x = 42，x = <b>14 元</b>。"},{"tag":"例","n":3,"level":"","text":"当 x = 7 时，求 3x + 5 的值。","ans":"设梨树 x 棵，桃树 3x 棵。x + 3x = 200，4x = 200，x = 50。梨树 <b>50 棵</b>，桃树 <b>150 棵</b>。"},{"tag":"练","n":1,"level":"","text":"一本书有 a 页，每天看 8 页，看了 3 天后还剩多少页？","ans":"4x = 36，x = <b>9 只</b>。"},{"tag":"练","n":2,"level":"","text":"简写：n × 9 = （　）、b × 1 = （　）、c × 4 × 3 = （　）。","ans":"设这个数为 x。(x + 15) × 2 = 80，x + 15 = 40，x = <b>25</b>。"},{"tag":"练","n":3,"level":"","text":"当 x = 2.5 时，求 4x − 1 的值。","ans":"3x + 60 = 240，3x = 180，x = <b>60 千米/时</b>。"}]},{"title":"二、等式的性质与解方程","idea":"<b>等式的性质</b>——等式两边同时加上或减去同一个数，结果仍相等；两边同时乘或除以同一个非 0 数，结果仍相等。解方程就是利用这个性质，让 x 单独站在一边。<b>解完要检验</b>：把求出的 x 代回原方程，看左右两边是否相等。","problems":[{"tag":"例","n":1,"level":"","text":"解方程：x + 8 = 20","ans":"2x + 30 = 130，2x = 100，x = <b>50 本</b>。"},{"tag":"例","n":2,"level":"","text":"解方程：3x = 24","ans":"3x + 8 = 50，3x = 42，x = <b>14 元</b>。"},{"tag":"例","n":3,"level":"","text":"解方程：2x + 6 = 26","ans":"设梨树 x 棵，桃树 3x 棵。x + 3x = 200，4x = 200，x = 50。梨树 <b>50 棵</b>，桃树 <b>150 棵</b>。"},{"tag":"练","n":1,"level":"","text":"解方程：x − 5 = 12","ans":"4x = 36，x = <b>9 只</b>。"},{"tag":"练","n":2,"level":"","text":"解方程：x ÷ 4 = 9","ans":"设这个数为 x。(x + 15) × 2 = 80，x + 15 = 40，x = <b>25</b>。"},{"tag":"练","n":3,"level":"","text":"解方程：3x − 9 = 21","ans":"3x + 60 = 240，3x = 180，x = <b>60 千米/时</b>。"}]},{"title":"三、列方程解应用题","idea":"列方程的关键是<b>找等量关系</b>——把题目里\"相等\"的意思用等式写出来。步骤：设未知数 x → 根据等量关系列方程 → 解方程 → 检验作答。常见的等量关系：总量 = 部分 + 部分、单价 × 数量 = 总价、速度 × 时间 = 路程。","problems":[{"tag":"例","n":1,"level":"","text":"图书馆有科技书 x 本，故事书比科技书的 2 倍多 30 本，故事书有 130 本。列方程求科技书有多少本。","ans":"2x + 30 = 130，2x = 100，x = <b>50 本</b>。"},{"tag":"例","n":2,"level":"","text":"小明买了 3 支钢笔，每支 x 元，付了 50 元，找回 8 元。列方程求每支钢笔多少元。","ans":"3x + 8 = 50，3x = 42，x = <b>14 元</b>。"},{"tag":"例","n":3,"level":"","text":"果园里桃树和梨树共 200 棵，桃树是梨树的 3 倍。桃树、梨树各有多少棵？","ans":"设梨树 x 棵，桃树 3x 棵。x + 3x = 200，4x = 200，x = 50。梨树 <b>50 棵</b>，桃树 <b>150 棵</b>。"},{"tag":"练","n":1,"level":"","text":"一只青蛙 4 条腿，x 只青蛙共 36 条腿。列方程求 x。","ans":"4x = 36，x = <b>9 只</b>。"},{"tag":"练","n":2,"level":"","text":"一个数加上 15 再乘 2，等于 80。这个数是多少？（列方程）","ans":"设这个数为 x。(x + 15) × 2 = 80，x + 15 = 40，x = <b>25</b>。"},{"tag":"练","n":3,"level":"","text":"甲、乙两地相距 240 千米，一辆车从甲地开往乙地，每小时行 x 千米，行了 3 小时后距乙地还有 60 千米。列方程求 x。","ans":"3x + 60 = 240，3x = 180，x = <b>60 千米/时</b>。"}]}];
+
+let cur = 0;
+const view = document.getElementById('view');
+const titleEl = document.getElementById('title');
+const pageInd = document.getElementById('pageInd');
+const toggleAllBtn = document.getElementById('toggleAllBtn');
+let allOpen = false;
+
+function escapeHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function render() {
+  const p = pages[cur];
+  titleEl.textContent = p.title;
+  pageInd.textContent = (cur + 1) + ' / ' + pages.length;
+
+  let html = '<div class="section-title">' + escapeHtml(p.title) + '</div>';
+  html += '<div class="idea">' + p.idea.replace(/\*\*(.+?)\*\*/g, '<b>$1</b>') + '</div>';
+
+  p.problems.forEach((pr, idx) => {
+    const tagCls = pr.tag === '例' ? 'example' : 'practice';
+    const badge = pr.level ? ' <span class="badge">' + escapeHtml(pr.level) + '</span>' : '';
+    const open = allOpen ? ' open' : '';
+    html += '<div class="card' + open + '" data-i="' + idx + '">'
+      + '<div class="q"><span class="tag ' + tagCls + '">' + pr.tag + pr.n + '</span>'
+      + escapeHtml(pr.text) + badge
+      + '<div class="hint">' + (open ? '点一下收起答案' : '点一下看答案') + '</div>'
+      + '<div class="ans">' + pr.ans + '</div>'
+      + '</div></div>';
+  });
+
+  view.innerHTML = html;
+
+  view.querySelectorAll('.card').forEach(card => {
+    card.addEventListener('click', () => {
+      card.classList.toggle('open');
+      const hint = card.querySelector('.hint');
+      if (hint) hint.textContent = card.classList.contains('open') ? '点一下收起答案' : '点一下看答案';
+    });
+  });
+}
+
+function prevPage() { if (cur > 0) { cur--; render(); } }
+function nextPage() { if (cur < pages.length - 1) { cur++; render(); } }
+function toggleAll() {
+  allOpen = !allOpen;
+  toggleAllBtn.textContent = allOpen ? '全部收起' : '全部展开';
+  render();
+}
+
+document.getElementById('prevBtn').addEventListener('click', prevPage);
+document.getElementById('nextBtn').addEventListener('click', nextPage);
+document.getElementById('prevBtnB').addEventListener('click', prevPage);
+document.getElementById('nextBtnB').addEventListener('click', nextPage);
+toggleAllBtn.addEventListener('click', toggleAll);
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') prevPage();
+  if (e.key === 'ArrowRight') nextPage();
+});
+
+render();
+</script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="240" viewBox="0 0 320 240">
+  <style>
+    .shape{fill:none;stroke:#111827;stroke-width:2}
+    .lb{font-family:serif;font-size:17px;font-weight:bold;fill:#111827}
+  </style>
+  <!-- 长方形 6x4 -->
+  <rect class="shape" x="40" y="120" width="180" height="120"/>
+  <!-- 三角形 底6 高2，叠在长方形上 -->
+  <polygon class="shape" points="40,120 220,120 130,60"/>
+  <text class="lb" x="45" y="250">6m</text>
+  <text class="lb" x="230" y="180">4m</text>
+  <text class="lb" x="180" y="95">高2m</text>
+</svg>
