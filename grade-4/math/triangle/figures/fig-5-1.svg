@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220">
+  <style>
+    .tri{fill:none;stroke:#111827;stroke-width:2}
+    .lb{font-family:serif;font-size:18px;font-weight:bold;fill:#111827}
+    .val{font-family:serif;font-size:16px;fill:#374151}
+  </style>
+  <polygon class="tri" points="60,40 25,190 275,190"/>
+  <path class="tri" d="M 25 190 L 150 116 L 275 190"/>
+  <text class="lb" x="50" y="32">A</text>
+  <text class="lb" x="12" y="205">B</text>
+  <text class="lb" x="283" y="205">C</text>
+  <text class="lb" x="158" y="108">O</text>
+  <text class="val" x="90" y="80">76°</text>
+</svg>

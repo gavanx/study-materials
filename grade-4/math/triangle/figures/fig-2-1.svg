@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220">
+  <style>
+    .tri{fill:none;stroke:#111827;stroke-width:2}
+    .val{font-family:serif;font-size:16px;fill:#374151}
+  </style>
+  <polygon class="tri" points="90,38 158.5,87.8 132.3,168.3 47.7,168.3 21.5,87.8"/>
+  <polygon class="tri" points="230,38 292.4,74 292.4,146 230,182 167.6,146 167.6,74"/>
+  <text class="val" x="70" y="210">五边形</text>
+  <text class="val" x="210" y="210">六边形</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220">
+  <style>
+    .tri{fill:none;stroke:#111827;stroke-width:2}
+  </style>
+  <path class="tri" d="M 160 20 L 215.8 191.9 L 69.6 85.6 L 250.4 85.6 L 104.2 191.9 Z"/>
+</svg>
