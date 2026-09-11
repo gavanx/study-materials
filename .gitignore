@@ -1,2 +1,4 @@
 .DS_Store
 **/.DS_Store
+# 家长核对用答案键，只留本地，不进公开资料库
+**/answers.txt
