@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#2563eb">
+<title>每日一题 · WMO</title>
+<style>
+  :root {
+    --primary: #2563eb; --primary-dark: #1d4ed8; --primary-bg: #eff6ff;
+    --ink: #111827; --soft: #6b7280; --line: #e5e7eb;
+    --ok: #15803d; --ok-bg: #f0fdf4; --ok-line: #86efac;
+    --bad: #b91c1c; --bad-bg: #fef2f2; --bad-line: #fca5a5;
+    --warn: #b45309; --warn-bg: #fffbeb; --warn-line: #fcd34d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; }
+  body {
+    font-family: "PingFang SC", "Noto Sans CJK SC", "Songti SC", serif;
+    font-size: 17px; color: var(--ink); background: #f8fafc;
+    display: flex; flex-direction: column;
+  }
+  header {
+    position: sticky; top: 0; z-index: 20; background: #fff;
+    border-bottom: 1px solid var(--line); box-shadow: 0 1px 4px rgba(0,0,0,.05);
+    padding: 10px 16px; display: flex; align-items: center; gap: 12px;
+  }
+  header .title { flex: 1; min-width: 0; }
+  header h1 { font-size: 18px; font-weight: 700; }
+  header .sub { font-size: 12.5px; color: var(--soft); margin-top: 2px; }
+  .streak {
+    flex: 0 0 auto; text-align: center; background: var(--primary-bg);
+    color: var(--primary); border-radius: 12px; padding: 6px 12px; line-height: 1.15;
+  }
+  .streak b { display: block; font-size: 20px; }
+  .streak span { font-size: 11.5px; }
+
+  main { flex: 1; overflow-y: auto; padding: 16px 14px calc(84px + env(safe-area-inset-bottom)); }
+  .wrap { max-width: 760px; margin: 0 auto; }
+
+  .meta { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 10px; font-size: 12.5px; color: var(--soft); }
+  .chip { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; }
+  .chip.date { border-color: var(--primary); color: var(--primary); background: var(--primary-bg); font-weight: 600; }
+  .chip.warn { border-color: var(--warn-line); color: var(--warn); background: var(--warn-bg); }
+
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 14px; margin-bottom: 14px; box-shadow: 0 1px 3px rgba(0,0,0,.05); }
+  .qhead { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .qno { font-size: 13px; font-weight: 700; color: #fff; background: var(--primary); border-radius: 8px; padding: 3px 9px; }
+  .qkind { font-size: 12.5px; color: var(--soft); }
+  .star { margin-left: auto; background: none; border: none; font-size: 24px; line-height: 1; cursor: pointer; color: #d1d5db; padding: 2px 4px; }
+  .star.on { color: #f59e0b; }
+
+  .qimg { width: 100%; display: block; border-radius: 10px; border: 1px solid #f1f5f9; background: #fff; cursor: zoom-in; }
+  .stem { margin-bottom: 10px; }
+  .stem .label { font-size: 12.5px; color: var(--soft); margin-bottom: 6px; }
+
+  .choices { display: grid; gap: 10px; margin-top: 14px; }
+  .choice {
+    display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+    background: #fff; border: 2px solid var(--line); border-radius: 14px;
+    padding: 13px 14px; font-size: 17px; font-family: inherit; color: var(--ink);
+    cursor: pointer; transition: border-color .12s, background .12s;
+  }
+  .choice:active { transform: scale(.99); }
+  .choice .k {
+    flex: 0 0 30px; height: 30px; border-radius: 50%; background: #f1f5f9;
+    display: grid; place-items: center; font-weight: 700; font-size: 15px;
+  }
+  .choice.picked { border-color: var(--primary); background: var(--primary-bg); }
+  .choice.picked .k { background: var(--primary); color: #fff; }
+  .choice.right { border-color: var(--ok-line); background: var(--ok-bg); }
+  .choice.right .k { background: var(--ok); color: #fff; }
+  .choice.wrong { border-color: var(--bad-line); background: var(--bad-bg); }
+  .choice.wrong .k { background: var(--bad); color: #fff; }
+  .choice[disabled] { cursor: default; }
+  .choice[disabled]:not(.right):not(.wrong) { opacity: .55; }
+
+  .fill { margin-top: 14px; }
+  .fill-row { display: flex; gap: 10px; }
+  .fill input {
+    flex: 1; min-width: 0; font-size: 17px; font-family: inherit; padding: 12px 14px;
+    border: 2px solid var(--line); border-radius: 12px; background: #fff; color: var(--ink);
+  }
+  .fill input:focus { outline: none; border-color: var(--primary); }
+  .btn {
+    border: none; border-radius: 12px; padding: 12px 18px; font-size: 16px; font-weight: 600;
+    font-family: inherit; background: var(--primary); color: #fff; cursor: pointer; touch-action: manipulation;
+  }
+  .btn:active { transform: scale(.97); }
+  .btn.ghost { background: #fff; color: var(--primary); border: 2px solid var(--primary); }
+  .btn.gray { background: #f1f5f9; color: var(--ink); }
+  .btn.ok { background: var(--ok); }
+  .btn.bad { background: var(--bad); }
+  .btn[disabled] { opacity: .45; }
+
+  .result { margin-top: 14px; border-radius: 14px; padding: 12px 14px; font-size: 15.5px; line-height: 1.7; }
+  .result.ok { background: var(--ok-bg); border: 1px solid var(--ok-line); color: #14532d; }
+  .result.bad { background: var(--bad-bg); border: 1px solid var(--bad-line); color: #7f1d1d; }
+  .result b { font-size: 17px; }
+  .selfcheck { display: flex; gap: 10px; margin-top: 12px; }
+  .selfcheck .btn { flex: 1; }
+
+  details.explain { margin-top: 12px; border-top: 1px dashed var(--line); padding-top: 12px; }
+  details.explain summary { cursor: pointer; font-weight: 600; color: var(--primary); font-size: 15.5px; list-style: none; }
+  details.explain summary::-webkit-details-marker { display: none; }
+  details.explain summary::before { content: "▸ "; }
+  details.explain[open] summary::before { content: "▾ "; }
+  details.explain p { margin-top: 10px; font-size: 16px; line-height: 1.8; color: #374151; white-space: pre-wrap; }
+  .tags { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag { font-size: 12px; color: var(--soft); background: #f8fafc; border: 1px solid var(--line); border-radius: 999px; padding: 2px 8px; }
+
+  .actions { display: flex; gap: 10px; margin-top: 14px; }
+  .actions .btn { flex: 1; }
+
+  /* 底部导航 */
+  nav {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 30; display: flex;
+    background: rgba(255,255,255,.96); backdrop-filter: blur(8px);
+    border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom);
+  }
+  nav button {
+    flex: 1; background: none; border: none; padding: 10px 4px 9px; font-family: inherit;
+    font-size: 12px; color: var(--soft); display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer;
+  }
+  nav button .ico { font-size: 20px; line-height: 1; }
+  nav button.on { color: var(--primary); font-weight: 700; }
+  nav .badge {
+    position: absolute; transform: translate(14px,-4px); background: var(--bad); color: #fff;
+    font-size: 10px; border-radius: 999px; padding: 0 5px; line-height: 15px; min-width: 15px;
+  }
+
+  /* 列表 */
+  .list-item { display: flex; gap: 12px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px; margin-bottom: 10px; cursor: pointer; }
+  .list-item img { width: 84px; height: 62px; object-fit: cover; object-position: top left; border-radius: 8px; border: 1px solid #f1f5f9; flex: 0 0 auto; }
+  .list-item .txt { flex: 1; min-width: 0; font-size: 13.5px; color: #374151; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .list-item .no { font-size: 12px; color: var(--soft); }
+  .empty { text-align: center; color: var(--soft); padding: 40px 10px; font-size: 15px; line-height: 1.8; }
+  .section-title { font-size: 16px; font-weight: 700; margin: 4px 0 12px; }
+  .hint { font-size: 13px; color: var(--soft); line-height: 1.7; margin-top: 8px; }
+
+  /* 放大查看 */
+  .zoom { position: fixed; inset: 0; background: rgba(17,24,39,.94); z-index: 60; display: none; overflow: auto; padding: 12px; }
+  .zoom.show { display: block; }
+  .zoom img { width: 100%; background: #fff; border-radius: 8px; }
+  .zoom .close { position: fixed; top: 12px; right: 12px; background: #fff; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; }
+
+  .loading { text-align: center; color: var(--soft); padding: 60px 10px; }
+  .toast {
+    position: fixed; left: 50%; bottom: 96px; transform: translate(-50%, 10px);
+    background: rgba(17,24,39,.92); color: #fff; font-size: 14px; padding: 9px 16px; border-radius: 999px;
+    opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 70;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
+</style>
+</head>
+<body>
+<header>
+  <div class="title">
+    <h1>每日一题</h1>
+    <div class="sub" id="sub">正在加载题库…</div>
+  </div>
+  <div class="streak"><b id="streakNum">0</b><span>连续打卡</span></div>
+</header>
+
+<main>
+  <div class="wrap" id="view"></div>
+</main>
+
+<nav>
+  <button data-tab="today" class="on"><span class="ico">📅</span>今日</button>
+  <button data-tab="wrong"><span class="ico">📕</span>错题本<span class="badge" id="wrongBadge" hidden>0</span></button>
+  <button data-tab="fav"><span class="ico">⭐</span>收藏</button>
+</nav>
+
+<div class="zoom" id="zoom"><button class="close" id="zoomClose">✕</button><img id="zoomImg" alt=""></div>
+<div class="toast" id="toast"></div>
+
+<script>
+(() => {
+  'use strict';
+
+  const STORE = {
+    progress: 'quiz_progress',   // { 'YYYY-MM-DD': { qid, ok } }
+    wrong:    'quiz_wrong',      // { qid: { ts, times } }
+    fav:      'quiz_fav',        // { qid: { ts } }
+  };
+
+  const state = {
+    data: null,
+    byId: new Map(),
+    tab: 'today',
+    date: '',            // 当天日期字符串
+    isTestDate: false,
+    q: null,             // 当前展示的题目
+    answered: null,      // { choice } | { revealed:true } | { self:'ok'|'bad' }
+    extraIndex: 0,       // 「换一题」偏移
+    review: null,        // 从错题本/收藏进入时携带的 qid
+    reviewFrom: 'wrong', // 记住从哪个列表进来的
+  };
+
+  /* ---------- 存储（隐私模式下降级） ---------- */
+  function read(key, fallback) {
+    try {
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
+    } catch (e) { return fallback; }
+  }
+  function write(key, val) {
+    try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* 只读模式忽略 */ }
+  }
+
+  /* ---------- 日期与随机 ---------- */
+  function fmtDate(d) {
+    const p = n => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())}`;
+  }
+  function parseDate(s) {
+    const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || '');
+    if (!m) return null;
+    const d = new Date(+m[1], +m[2] - 1, +m[3]);
+    return isNaN(d) ? null : d;
+  }
+  // 同一日期在任何人设备上选出同一题
+  function mulberry32(a) {
+    return function () {
+      a |= 0; a = a + 0x6D2B79F5 | 0;
+      let t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function seedOf(dateStr) {
+    return parseInt(dateStr.replace(/-/g, ''), 10) >>> 0;
+  }
+  function dailyIndex(dateStr, len) {
+    const rnd = mulberry32(seedOf(dateStr));
+    return Math.floor(rnd() * len);
+  }
+
+  /* ---------- 题库 ---------- */
+  function practicePool() {
+    return state.data.questions
+      .filter(q => q.kind !== 'stem')
+      .sort((a, b) => a.id.localeCompare(b.id));
+  }
+  function stemOf(q) {
+    return q.stemId ? state.byId.get(q.stemId) : null;
+  }
+  function setOf(q) {
+    return state.data.sets.find(s => s.id === q.setId) || {};
+  }
+
+  /* ---------- 打卡 ---------- */
+  function progress() { return read(STORE.progress, {}); }
+  // 只有「今日题」（不是加练、不是从错题本打开）才计入打卡
+  function countsForCheckin() {
+    return !state.review && state.extraIndex === 0;
+  }
+  function markDone(qid, ok) {
+    if (!countsForCheckin()) return;
+    const p = progress();
+    if (!p[state.date]) {           // 只记录当天第一次完成的那题
+      p[state.date] = { qid, ok, ts: Date.now() };
+      write(STORE.progress, p);
+      renderStreak();
+    }
+  }
+  function streakDays() {
+    const p = progress();
+    const d = new Date();
+    if (!p[fmtDate(d)]) d.setDate(d.getDate() - 1);   // 今天还没做，从昨天开始数
+    let n = 0;
+    while (p[fmtDate(d)]) { n++; d.setDate(d.getDate() - 1); }
+    return n;
+  }
+  function renderStreak() {
+    document.getElementById('streakNum').textContent = streakDays();
+  }
+
+  /* ---------- 错题本 / 收藏 ---------- */
+  function wrongBook() { return read(STORE.wrong, {}); }
+  function favBook() { return read(STORE.fav, {}); }
+  function addWrong(qid) {
+    const b = wrongBook();
+    b[qid] = { ts: Date.now(), times: (b[qid]?.times || 0) + 1 };
+    write(STORE.wrong, b);
+    renderBadge();
+  }
+  function toggleFav(qid) {
+    const b = favBook();
+    if (b[qid]) delete b[qid]; else b[qid] = { ts: Date.now() };
+    write(STORE.fav, b);
+    return !!b[qid];
+  }
+  function renderBadge() {
+    const n = Object.keys(wrongBook()).length;
+    const el = document.getElementById('wrongBadge');
+    el.hidden = n === 0;
+    el.textContent = n > 99 ? '99+' : n;
+  }
+
+  /* ---------- 渲染 ---------- */
+  const view = document.getElementById('view');
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const KIND = { choice: '单选题', fill: '填空题', stem: '组合题' };
+
+  function render() {
+    if (!state.data) return;
+    renderBadge();
+    if (state.tab === 'today') renderToday();
+    else if (state.tab === 'wrong') renderList('wrong');
+    else renderList('fav');
+  }
+
+  function renderToday() {
+    if (!state.q) {
+      view.innerHTML = '<div class="empty">今天没有可用题目</div>';
+      return;
+    }
+    const q = state.q;
+    const set = setOf(q);
+    const stem = stemOf(q);
+    const isFav = !!favBook()[q.id];
+    const isTest = state.isTestDate ? '<span class="chip warn">测试日期</span>' : '';
+
+    let body = '';
+    if (stem) {
+      body += `<div class="stem"><div class="label">题目背景</div>
+        <img class="qimg" data-zoom src="${esc(stem.img)}" alt="题目背景"></div>`;
+    }
+    body += `<img class="qimg" data-zoom src="${esc(q.img)}" alt="第 ${esc(q.no)} 题">`;
+
+    if (q.kind === 'choice') body += choiceBlock(q);
+    else body += fillBlock(q);
+
+    view.innerHTML = `
+      <div class="meta">
+        <span class="chip date">${esc(state.date)}</span>
+        ${isTest}
+        <span class="chip">${esc(set.shortName || set.name || '')}</span>
+        <span class="chip">共 ${practicePool().length} 题可选</span>
+      </div>
+      <div class="card">
+        <div class="qhead">
+          <span class="qno">第 ${esc(q.no)} 题</span>
+          <span class="qkind">${KIND[q.kind] || q.kind}</span>
+          ${q.needsReview ? '<span class="chip warn">答案待核对</span>' : ''}
+          <button class="star ${isFav ? 'on' : ''}" id="starBtn" aria-label="收藏">${isFav ? '★' : '☆'}</button>
+        </div>
+        ${body}
+      </div>
+      <div class="actions">
+        ${state.review
+          ? '<button class="btn gray" id="backBtn">返回列表</button>'
+          : `${state.extraIndex > 0 ? '<button class="btn gray" id="todayBtn">回到今日题</button>' : ''}
+             <button class="btn ghost" id="nextBtn">换一题</button>`}
+      </div>
+      <div class="hint">${state.review
+        ? '这是从错题本/收藏里打开的题目，答完可以返回继续挑题。'
+        : '每天只有一道「今日题」计入打卡；「换一题」不计入打卡，用来加练。'}</div>
+    `;
+
+    bindCommon(q, set);
+  }
+
+  function choiceBlock(q) {
+    const choices = q.choices || {};
+    const keys = Object.keys(choices);
+    const picked = state.answered?.choice;
+    const done = !!picked;
+    const ok = picked === q.answer;
+    return `<div class="choices">
+      ${keys.map(k => {
+        let cls = 'choice';
+        if (done) {
+          if (k === q.answer) cls += ' right';
+          else if (k === picked) cls += ' wrong';
+        }
+        return `<button class="${cls}" data-choice="${esc(k)}" ${done ? 'disabled' : ''}>
+          <span class="k">${esc(k)}</span><span>${esc(choices[k])}</span>
+        </button>`;
+      }).join('')}
+    </div>${done ? `<div class="result ${ok ? 'ok' : 'bad'}">
+        <b>${ok ? '✔ 答对了' : '✘ 答错了'}</b>
+        <div>正确答案：${esc(q.answer)}　你的选择：${esc(picked)}</div>
+      </div>` : ''}${resultBlock(q)}`;
+  }
+
+  function fillBlock(q) {
+    const a = state.answered || {};
+    if (!a.revealed) {
+      return `<div class="fill">
+        <div class="fill-row">
+          <input id="fillInput" inputmode="text" placeholder="把答案写在这里" autocomplete="off">
+          <button class="btn" id="checkBtn">对答案</button>
+        </div>
+        <div class="hint">填空题没有自动判分，对完答案后自己评一下。</div>
+      </div>`;
+    }
+    const self = a.self;
+    return `<div class="fill">
+      ${self ? '' : `
+        <div class="result ok"><b>参考答案：${esc(q.answer)}</b><div>和你算的一样吗？</div></div>
+        <div class="selfcheck">
+          <button class="btn ok" id="selfOk">算对了</button>
+          <button class="btn bad" id="selfBad">算错了</button>
+        </div>`}
+      ${self ? `<div class="result ${self === 'ok' ? 'ok' : 'bad'}">
+        <b>${self === 'ok' ? '✔ 这题掌握得不错' : '✘ 已记进错题本'}</b>
+        <div>参考答案：${esc(q.answer)}</div></div>` : ''}
+      ${resultBlock(q)}
+    </div>`;
+  }
+
+  function resultBlock(q) {
+    const done = isAnswered();
+    const details = q.explain
+      ? `<details class="explain" ${done ? 'open' : ''}>
+           <summary>解析</summary><p>${esc(q.explain)}</p>
+           ${q.tags && q.tags.length ? `<div class="tags">${q.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+         </details>`
+      : (q.tags && q.tags.length
+          ? `<div class="tags">${q.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>`
+          : '');
+    return details;
+  }
+
+  function isAnswered() {
+    const a = state.answered;
+    if (!a) return false;
+    return a.choice !== undefined || a.self !== undefined;
+  }
+
+  function bindCommon(q, set) {
+    document.querySelectorAll('[data-zoom]').forEach(img => {
+      img.addEventListener('click', () => openZoom(img.src));
+    });
+
+    const star = document.getElementById('starBtn');
+    if (star) star.addEventListener('click', () => {
+      const on = toggleFav(q.id);
+      star.classList.toggle('on', on);
+      star.textContent = on ? '★' : '☆';
+      toast(on ? '已收藏' : '已取消收藏');
+    });
+
+    document.querySelectorAll('[data-choice]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (state.answered?.choice) return;
+        const picked = btn.dataset.choice;
+        state.answered = { choice: picked };
+        const ok = picked === q.answer;
+        if (!ok) addWrong(q.id);
+        markDone(q.id, ok);
+        renderToday();
+      });
+    });
+
+    const check = document.getElementById('checkBtn');
+    if (check) {
+      check.addEventListener('click', () => {
+        const val = document.getElementById('fillInput').value.trim();
+        if (!val) { toast('先写下你的答案'); return; }
+        state.answered = { revealed: true, input: val };
+        renderToday();
+      });
+    }
+
+    const selfOk = document.getElementById('selfOk');
+    if (selfOk) selfOk.addEventListener('click', () => {
+      state.answered.self = 'ok';
+      markDone(q.id, true);
+      renderToday();
+    });
+
+    const selfBad = document.getElementById('selfBad');
+    if (selfBad) selfBad.addEventListener('click', () => {
+      state.answered.self = 'bad';
+      addWrong(q.id);
+      markDone(q.id, false);
+      renderToday();
+    });
+
+    const next = document.getElementById('nextBtn');
+    if (next) next.addEventListener('click', () => {
+      state.extraIndex += 1;
+      loadDailyQuestion();
+      renderToday();
+      window.scrollTo(0, 0);
+    });
+
+    const todayBtn = document.getElementById('todayBtn');
+    if (todayBtn) todayBtn.addEventListener('click', () => {
+      state.extraIndex = 0;
+      loadDailyQuestion();
+      renderToday();
+      window.scrollTo(0, 0);
+    });
+
+    const back = document.getElementById('backBtn');
+    if (back) back.addEventListener('click', () => {
+      state.review = null;
+      state.q = null;
+      state.answered = null;
+      state.tab = state.reviewFrom;
+      syncNav();
+      render();
+    });
+  }
+
+  function renderList(kind) {
+    const book = kind === 'wrong' ? wrongBook() : favBook();
+    const ids = Object.keys(book).sort((a, b) => book[b].ts - book[a].ts);
+    const items = ids.map(id => state.byId.get(id)).filter(Boolean);
+    const title = kind === 'wrong' ? '错题本' : '我的收藏';
+
+    if (!items.length) {
+      view.innerHTML = `<div class="section-title">${title}</div>
+        <div class="empty">${kind === 'wrong'
+          ? '还没有错题。<br>做错的题会自动收进来，随时可以重做。'
+          : '还没有收藏。<br>题目右上角的 ☆ 可以收藏。'}</div>`;
+      return;
+    }
+
+    view.innerHTML = `<div class="section-title">${title}（${items.length}）</div>
+      ${items.map(q => `
+        <div class="list-item" data-open="${esc(q.id)}">
+          <img src="${esc(q.img)}" alt="">
+          <div class="txt">
+            <div class="no">${esc(setOf(q).shortName || '')} · 第 ${esc(q.no)} 题
+              ${kind === 'wrong' && book[q.id].times > 1 ? ` · 错 ${book[q.id].times} 次` : ''}</div>
+            ${esc(q.text || '')}
+          </div>
+        </div>`).join('')}`;
+
+    view.querySelectorAll('[data-open]').forEach(el => {
+      el.addEventListener('click', () => openReview(el.dataset.open));
+    });
+  }
+
+  function openReview(qid) {
+    state.review = qid;
+    state.reviewFrom = state.tab;
+    state.q = state.byId.get(qid);
+    state.answered = null;
+    state.tab = 'today';
+    syncNav();
+    renderToday();
+    window.scrollTo(0, 0);
+  }
+
+  function loadDailyQuestion() {
+    const pool = practicePool();
+    if (!pool.length) { state.q = null; return; }
+    const base = dailyIndex(state.date, pool.length);
+    state.q = pool[(base + state.extraIndex) % pool.length];
+    state.answered = null;
+  }
+
+  /* ---------- 交互杂项 ---------- */
+  const zoom = document.getElementById('zoom');
+  const zoomImg = document.getElementById('zoomImg');
+  function openZoom(src) { zoomImg.src = src; zoom.classList.add('show'); }
+  document.getElementById('zoomClose').addEventListener('click', () => zoom.classList.remove('show'));
+  zoom.addEventListener('click', e => { if (e.target === zoom) zoom.classList.remove('show'); });
+
+  let toastTimer;
+  function toast(msg) {
+    const el = document.getElementById('toast');
+    el.textContent = msg;
+    el.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 1600);
+  }
+
+  function syncNav() {
+    document.querySelectorAll('nav button').forEach(b => {
+      b.classList.toggle('on', b.dataset.tab === state.tab);
+    });
+  }
+  document.querySelectorAll('nav button').forEach(b => {
+    b.addEventListener('click', () => {
+      state.tab = b.dataset.tab;
+      state.review = null;
+      if (state.tab === 'today') {   // 点「今日」总是回到当天的题，不残留错题本里打开的那道
+        state.extraIndex = 0;
+        loadDailyQuestion();
+      }
+      syncNav();
+      render();
+      window.scrollTo(0, 0);
+    });
+  });
+
+  /* ---------- 启动 ---------- */
+  async function boot() {
+    const params = new URLSearchParams(location.search);
+    const override = parseDate(params.get('date'));
+    const now = new Date();
+    state.date = fmtDate(override || now);
+    state.isTestDate = !!override;
+
+    try {
+      const res = await fetch('data/questions.json', { cache: 'no-cache' });
+      if (!res.ok) throw new Error(res.status);
+      state.data = await res.json();
+    } catch (e) {
+      document.getElementById('view').innerHTML =
+        `<div class="empty">题库加载失败。<br>请通过本地服务器或 GitHub Pages 打开本页
+         （直接双击文件时浏览器会拦截读取）。<br><br>
+         <code>python3 -m http.server 8000</code></div>`;
+      document.getElementById('sub').textContent = '题库未加载';
+      return;
+    }
+
+    state.data.questions.forEach(q => state.byId.set(q.id, q));
+    const total = practicePool().length;
+    const setNames = state.data.sets.map(s => s.shortName || s.name).join(' / ');
+    document.getElementById('sub').textContent = `${setNames} · 每天随机一题`;
+    document.getElementById('streakNum').textContent = streakDays();
+
+    loadDailyQuestion();
+    render();
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>
