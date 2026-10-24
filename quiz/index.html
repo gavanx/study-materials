@@ -51,7 +51,17 @@
   .star.on { color: #f59e0b; }
 
   .qimg { width: 100%; display: block; border-radius: 10px; border: 1px solid #f1f5f9; background: #fff; cursor: zoom-in; }
-  .stem { margin-bottom: 10px; }
+  .qtext { font-size: 19px; line-height: 1.85; letter-spacing: .2px; white-space: pre-wrap; word-break: break-word; }
+  .qtext + .qtext { margin-top: 8px; }
+  details.orig { margin-top: 14px; border-top: 1px dashed var(--line); padding-top: 10px; }
+  details.orig summary {
+    cursor: pointer; font-size: 14px; font-weight: 600; color: var(--primary); list-style: none;
+  }
+  details.orig summary::-webkit-details-marker { display: none; }
+  details.orig summary::before { content: "▸ "; }
+  details.orig[open] summary::before { content: "▾ "; }
+  details.orig img { margin-top: 10px; }
+  .stem { margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px dashed var(--line); }
   .stem .label { font-size: 12.5px; color: var(--soft); margin-bottom: 6px; }
 
   .choices { display: grid; gap: 10px; margin-top: 14px; }
@@ -352,6 +362,23 @@
     else renderList('fav');
   }
 
+  // 题干以文字为主（扫描件缩到卡片宽度会糊），原图折叠在下面，带图的题默认展开
+  function textBlock(q) {
+    const t = (q.text || '').trim();
+    return t ? `<div class="qtext">${esc(t)}</div>` : '';
+  }
+  function hasFigure(q) {
+    return /如图|下图|上图|图形|图中|表格|图案|示意|路线图|展开图|图\s*[1-9]/.test(q.text || '');
+  }
+  function origImage(q, alt) {
+    if (!q.img) return '';
+    const open = !q.text || hasFigure(q);
+    return `<details class="orig" ${open ? 'open' : ''}>
+      <summary>原题图（字太小可点开放大）</summary>
+      <img class="qimg" data-zoom src="${esc(q.img)}" alt="${esc(alt)}">
+    </details>`;
+  }
+
   function renderToday() {
     if (!state.q) {
       view.innerHTML = '<div class="empty">今天没有可用题目</div>';
@@ -366,9 +393,9 @@
     let body = '';
     if (stem) {
       body += `<div class="stem"><div class="label">题目背景</div>
-        <img class="qimg" data-zoom src="${esc(stem.img)}" alt="题目背景"></div>`;
+        ${textBlock(stem)}${origImage(stem, '题目背景')}</div>`;
     }
-    body += `<img class="qimg" data-zoom src="${esc(q.img)}" alt="第 ${esc(q.no)} 题">`;
+    body += textBlock(q) + origImage(q, `第 ${q.no} 题原图`);
 
     if (q.kind === 'choice') body += choiceBlock(q);
     else body += fillBlock(q);
@@ -381,7 +408,7 @@
         <span class="chip">共 ${practicePool().length} 题可选</span>
       </div>
       ${set.answerSource && set.answerSource !== 'official'
-        ? `<div class="notice">本卷原始答案缺失或与卷面不一致，答案由 AI 逐题重算${set.answerNote ? '：' + esc(set.answerNote) : ''}，建议家长抽查。</div>`
+        ? `<div class="notice">本卷原始答案缺失或与卷面不一致，答案由 AI 逐题重算${set.answerNote ? '：' + esc(set.answerNote.replace(/[。；;，,\s]+$/, '')) : ''}，建议家长抽查。</div>`
         : ''}
       <div class="card">
         <div class="qhead">
