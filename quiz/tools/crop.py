@@ -131,6 +131,8 @@ def build_manifest(path: Path, sets: list, questions: list, sheets: list):
                 "explain": item.get("explain", ""),
                 "stemId": item.get("stemId"),
                 "tags": item.get("tags", []),
+                "board": item.get("board"),
+                "topic": item.get("topic"),
                 "img": f"data/img/{item['id']}.webp",
                 "page": src.name,
                 "bbox": bbox,

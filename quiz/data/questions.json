@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "generatedAt": "2026-10-24T14:13:16+08:00",
+  "generatedAt": "2026-10-24T14:22:45+08:00",
   "sets": [
     {
       "id": "wmo-16c5",
@@ -155,6 +155,8 @@
         "时间计算",
         "生活常识"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-16c5-01.webp",
       "page": "初赛试卷-1.jpg",
       "bbox": [
@@ -184,6 +186,8 @@
         "植树问题",
         "最优化"
       ],
+      "board": "组合",
+      "topic": "最优化问题",
       "img": "data/img/wmo-16c5-02.webp",
       "page": "初赛试卷-1.jpg",
       "bbox": [
@@ -213,6 +217,8 @@
         "估算",
         "单位换算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-16c5-03.webp",
       "page": "初赛试卷-1.jpg",
       "bbox": [
@@ -242,6 +248,8 @@
         "坐标",
         "行程问题"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-16c5-04.webp",
       "page": "初赛试卷-1.jpg",
       "bbox": [
@@ -271,6 +279,8 @@
         "完全平方公式",
         "代数式求值"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-16c5-05.webp",
       "page": "初赛试卷-1.jpg",
       "bbox": [
@@ -300,6 +310,8 @@
         "最优化",
         "周期"
       ],
+      "board": "应用题",
+      "topic": "周期与循环小数",
       "img": "data/img/wmo-16c5-06.webp",
       "page": "初赛试卷-1.jpg",
       "bbox": [
@@ -329,6 +341,8 @@
         "方程",
         "和差倍"
       ],
+      "board": "应用题",
+      "topic": "和差倍与平均",
       "img": "data/img/wmo-16c5-07.webp",
       "page": "初赛试卷-1.jpg",
       "bbox": [
@@ -358,6 +372,8 @@
         "幻方",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-16c5-08.webp",
       "page": "初赛试卷-1.jpg",
       "bbox": [
@@ -387,6 +403,8 @@
         "和差问题",
         "整体代换"
       ],
+      "board": "应用题",
+      "topic": "和差倍与平均",
       "img": "data/img/wmo-16c5-09.webp",
       "page": "初赛试卷-1.jpg",
       "bbox": [
@@ -417,6 +435,8 @@
         "标号法",
         "路线问题"
       ],
+      "board": "其他",
+      "topic": "空间与光路",
       "img": "data/img/wmo-16c5-10.webp",
       "page": "初赛试卷-1.jpg",
       "bbox": [
@@ -446,6 +466,8 @@
         "立体图形",
         "计数"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-16c5-11.webp",
       "page": "初赛试卷-2.jpg",
       "bbox": [
@@ -475,6 +497,8 @@
         "逻辑推理",
         "光路"
       ],
+      "board": "其他",
+      "topic": "空间与光路",
       "img": "data/img/wmo-16c5-12.webp",
       "page": "初赛试卷-2.jpg",
       "bbox": [
@@ -504,6 +528,8 @@
         "计数",
         "乘法原理"
       ],
+      "board": "计数",
+      "topic": "加乘原理",
       "img": "data/img/wmo-16c5-13.webp",
       "page": "初赛试卷-2.jpg",
       "bbox": [
@@ -533,6 +559,8 @@
         "植树问题",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-16c5-14.webp",
       "page": "初赛试卷-2.jpg",
       "bbox": [
@@ -562,6 +590,8 @@
         "逻辑推理",
         "最值"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-16c5-15.webp",
       "page": "初赛试卷-2.jpg",
       "bbox": [
@@ -591,6 +621,8 @@
         "角",
         "对称"
       ],
+      "board": "几何图形",
+      "topic": "图形剪拼与对称",
       "img": "data/img/wmo-16c5-16.webp",
       "page": "初赛试卷-2.jpg",
       "bbox": [
@@ -620,6 +652,8 @@
         "组合图形",
         "计数"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-16c5-17.webp",
       "page": "初赛试卷-2.jpg",
       "bbox": [
@@ -649,6 +683,8 @@
         "逻辑推理",
         "图论"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-16c5-18.webp",
       "page": "初赛试卷-2.jpg",
       "bbox": [
@@ -678,6 +714,8 @@
         "逻辑推理",
         "抽屉原理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-16c5-19.webp",
       "page": "初赛试卷-2.jpg",
       "bbox": [
@@ -707,6 +745,8 @@
         "投影",
         "立体图形"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-16c5-20.webp",
       "page": "初赛试卷-2.jpg",
       "bbox": [
@@ -731,6 +771,8 @@
         "汇率",
         "小数除法"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-16f5-21.webp",
       "page": "复赛试卷-1.jpg",
       "bbox": [
@@ -755,6 +797,8 @@
         "二进制",
         "规律"
       ],
+      "board": "计数",
+      "topic": "页码与数字计数",
       "img": "data/img/wmo-16f5-22.webp",
       "page": "复赛试卷-1.jpg",
       "bbox": [
@@ -780,6 +824,8 @@
         "最优化",
         "中位数"
       ],
+      "board": "组合",
+      "topic": "最优化问题",
       "img": "data/img/wmo-16f5-23.webp",
       "page": "复赛试卷-1.jpg",
       "bbox": [
@@ -804,6 +850,8 @@
         "组合题",
         "找规律"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-16f5-s24.webp",
       "page": "复赛试卷-1.jpg",
       "bbox": [
@@ -828,6 +876,8 @@
         "找规律",
         "平方数"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-16f5-24-1.webp",
       "page": "复赛试卷-1.jpg",
       "bbox": [
@@ -852,6 +902,8 @@
         "找规律",
         "代数式"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-16f5-24-2.webp",
       "page": "复赛试卷-1.jpg",
       "bbox": [
@@ -876,6 +928,8 @@
         "找规律",
         "平方数"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-16f5-24-3.webp",
       "page": "复赛试卷-1.jpg",
       "bbox": [
@@ -900,6 +954,8 @@
         "路线规划",
         "最优化"
       ],
+      "board": "组合",
+      "topic": "最优化问题",
       "img": "data/img/wmo-16f5-25.webp",
       "page": "复赛试卷-1.jpg",
       "bbox": [
@@ -925,6 +981,8 @@
         "面积",
         "中点"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-16f5-26.webp",
       "page": "复赛试卷-2.jpg",
       "bbox": [
@@ -949,6 +1007,8 @@
         "行程问题",
         "流水行船"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-16f5-27.webp",
       "page": "复赛试卷-2.jpg",
       "bbox": [
@@ -973,6 +1033,8 @@
         "立体图形",
         "展开图"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-16f5-28.webp",
       "page": "复赛试卷-2.jpg",
       "bbox": [
@@ -997,6 +1059,8 @@
         "数阵",
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-16f5-29.webp",
       "page": "复赛试卷-2.jpg",
       "bbox": [
@@ -1022,6 +1086,8 @@
         "角度",
         "程序"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-16f5-30.webp",
       "page": "复赛试卷-2.jpg",
       "bbox": [
@@ -1050,6 +1116,8 @@
       "tags": [
         "小数的乘除法"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-18b5-01.webp",
       "page": "解析-1.jpg",
       "bbox": [
@@ -1078,6 +1146,8 @@
       "tags": [
         "周期问题"
       ],
+      "board": "应用题",
+      "topic": "周期与循环小数",
       "img": "data/img/wmo-18b5-02.webp",
       "page": "解析-1.jpg",
       "bbox": [
@@ -1106,6 +1176,8 @@
       "tags": [
         "立体图形的计数"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-18b5-03.webp",
       "page": "解析-1.jpg",
       "bbox": [
@@ -1136,6 +1208,8 @@
         "梯形",
         "面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-18b5-04.webp",
       "page": "解析-1.jpg",
       "bbox": [
@@ -1164,6 +1238,8 @@
       "tags": [
         "列方程解应用题"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-18b5-05.webp",
       "page": "解析-1.jpg",
       "bbox": [
@@ -1193,6 +1269,8 @@
         "定义新运算",
         "解方程"
       ],
+      "board": "计算",
+      "topic": "定义新运算",
       "img": "data/img/wmo-18b5-06.webp",
       "page": "解析-1.jpg",
       "bbox": [
@@ -1221,6 +1299,8 @@
       "tags": [
         "幻方"
       ],
+      "board": "其他",
+      "topic": "数独与幻方",
       "img": "data/img/wmo-18b5-07.webp",
       "page": "解析-1.jpg",
       "bbox": [
@@ -1249,6 +1329,8 @@
       "tags": [
         "合理安排时间"
       ],
+      "board": "组合",
+      "topic": "最优化问题",
       "img": "data/img/wmo-18b5-08.webp",
       "page": "解析-2.jpg",
       "bbox": [
@@ -1277,6 +1359,8 @@
       "tags": [
         "找规律"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-18b5-09.webp",
       "page": "解析-2.jpg",
       "bbox": [
@@ -1305,6 +1389,8 @@
       "tags": [
         "列方程解应用题"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-18b5-10.webp",
       "page": "解析-2.jpg",
       "bbox": [
@@ -1334,6 +1420,8 @@
         "数的整除",
         "完全平方数"
       ],
+      "board": "数论",
+      "topic": "质数与因数",
       "img": "data/img/wmo-18b5-11.webp",
       "page": "解析-2.jpg",
       "bbox": [
@@ -1362,6 +1450,8 @@
       "tags": [
         "行程问题"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-18b5-12.webp",
       "page": "解析-2.jpg",
       "bbox": [
@@ -1391,6 +1481,8 @@
         "乘法原理",
         "加法原理"
       ],
+      "board": "计数",
+      "topic": "加乘原理",
       "img": "data/img/wmo-18b5-13.webp",
       "page": "解析-2.jpg",
       "bbox": [
@@ -1419,6 +1511,8 @@
       "tags": [
         "标记法计数"
       ],
+      "board": "计数",
+      "topic": "几何计数",
       "img": "data/img/wmo-18b5-14.webp",
       "page": "解析-2.jpg",
       "bbox": [
@@ -1448,6 +1542,8 @@
         "逻辑推理",
         "完全平方数"
       ],
+      "board": "数论",
+      "topic": "质数与因数",
       "img": "data/img/wmo-18b5-15.webp",
       "page": "解析-2.jpg",
       "bbox": [
@@ -1476,6 +1572,8 @@
       "tags": [
         "进制"
       ],
+      "board": "计数",
+      "topic": "页码与数字计数",
       "img": "data/img/wmo-18b5-16.webp",
       "page": "解析-3.jpg",
       "bbox": [
@@ -1499,6 +1597,8 @@
       "tags": [
         "小数乘法应用题"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-18b5-17.webp",
       "page": "解析-3.jpg",
       "bbox": [
@@ -1522,6 +1622,8 @@
       "tags": [
         "数与运算"
       ],
+      "board": "计算",
+      "topic": "数字谜与位值",
       "img": "data/img/wmo-18b5-18.webp",
       "page": "解析-4.jpg",
       "bbox": [
@@ -1545,6 +1647,8 @@
       "tags": [
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-18b5-19.webp",
       "page": "解析-5.jpg",
       "bbox": [
@@ -1568,6 +1672,8 @@
       "tags": [
         "立体图形的展开图"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-18b5-20.webp",
       "page": "解析-6.jpg",
       "bbox": [
@@ -1597,6 +1703,8 @@
         "小数乘法",
         "积的变化规律"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-20c5-01.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -1626,6 +1734,8 @@
         "坐标",
         "行程问题"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-20c5-02.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -1655,6 +1765,8 @@
         "观察物体",
         "空间想象"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-20c5-03.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -1684,6 +1796,8 @@
         "小数乘法",
         "公式应用"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-20c5-04.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -1713,6 +1827,8 @@
         "轴对称",
         "旋转"
       ],
+      "board": "几何图形",
+      "topic": "图形剪拼与对称",
       "img": "data/img/wmo-20c5-05.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -1742,6 +1858,8 @@
         "可能性",
         "概率"
       ],
+      "board": "计数",
+      "topic": "概率初步",
       "img": "data/img/wmo-20c5-06.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -1771,6 +1889,8 @@
         "数与代数",
         "倒序数"
       ],
+      "board": "计算",
+      "topic": "数字谜与位值",
       "img": "data/img/wmo-20c5-07.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -1800,6 +1920,8 @@
         "组合",
         "整数比较"
       ],
+      "board": "组合",
+      "topic": "最优化问题",
       "img": "data/img/wmo-20c5-08.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -1829,6 +1951,8 @@
         "统计图",
         "数据分析"
       ],
+      "board": "其他",
+      "topic": "统计与图表",
       "img": "data/img/wmo-20c5-09.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -1858,6 +1982,8 @@
         "代数式",
         "操作问题"
       ],
+      "board": "组合",
+      "topic": "操作与构造",
       "img": "data/img/wmo-20c5-10.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -1887,6 +2013,8 @@
         "鸡兔同笼",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-20c5-11.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -1917,6 +2045,8 @@
         "面积",
         "方程"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-20c5-12.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -1946,6 +2076,8 @@
         "找规律",
         "数列"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-20c5-13.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -1975,6 +2107,8 @@
         "三角形三边关系",
         "枚举"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-20c5-14.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2004,6 +2138,8 @@
         "枚举",
         "数论"
       ],
+      "board": "计数",
+      "topic": "加乘原理",
       "img": "data/img/wmo-20c5-15.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2033,6 +2169,8 @@
         "逻辑推理",
         "位置排列"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-20c5-16.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2057,6 +2195,8 @@
         "小数除法",
         "估算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-20c5-17.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2081,6 +2221,8 @@
         "图形拼合",
         "五格骨牌"
       ],
+      "board": "几何图形",
+      "topic": "图形剪拼与对称",
       "img": "data/img/wmo-20c5-18.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2105,6 +2247,8 @@
         "优惠方案",
         "最优化"
       ],
+      "board": "组合",
+      "topic": "最优化问题",
       "img": "data/img/wmo-20c5-19.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2129,6 +2273,8 @@
         "分解质因数",
         "枚举"
       ],
+      "board": "数论",
+      "topic": "质数与因数",
       "img": "data/img/wmo-20c5-20.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2158,6 +2304,8 @@
         "代数式",
         "数列规律"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-22a5-01.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2187,6 +2335,8 @@
         "图形平移",
         "坐标"
       ],
+      "board": "几何图形",
+      "topic": "图形剪拼与对称",
       "img": "data/img/wmo-22a5-02.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2216,6 +2366,8 @@
         "归一问题",
         "小数乘法"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-22a5-03.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2245,6 +2397,8 @@
         "几何",
         "面积法"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-22a5-04.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2274,6 +2428,8 @@
         "立体图形",
         "三视图"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-22a5-05.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2303,6 +2459,8 @@
         "数位",
         "方程"
       ],
+      "board": "计算",
+      "topic": "数字谜与位值",
       "img": "data/img/wmo-22a5-06.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2330,6 +2488,8 @@
         "可能性",
         "概率"
       ],
+      "board": "计数",
+      "topic": "概率初步",
       "img": "data/img/wmo-22a5-07.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2358,6 +2518,8 @@
       "tags": [
         "定义新运算"
       ],
+      "board": "计算",
+      "topic": "定义新运算",
       "img": "data/img/wmo-22a5-08.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2387,6 +2549,8 @@
         "数列",
         "计数"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-22a5-09.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2416,6 +2580,8 @@
         "鸡兔同笼",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-22a5-10.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2445,6 +2611,8 @@
         "幻方",
         "数阵"
       ],
+      "board": "其他",
+      "topic": "数独与幻方",
       "img": "data/img/wmo-22a5-11.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2474,6 +2642,8 @@
         "等量代换",
         "天平"
       ],
+      "board": "组合",
+      "topic": "操作与构造",
       "img": "data/img/wmo-22a5-12.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2502,6 +2672,8 @@
       "tags": [
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-22a5-13.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2529,6 +2701,8 @@
         "周期",
         "数阵规律"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-22a5-14.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2558,6 +2732,8 @@
         "逻辑推理",
         "构造"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-22a5-15.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2588,6 +2764,8 @@
         "位值原理",
         "计数"
       ],
+      "board": "计算",
+      "topic": "数字谜与位值",
       "img": "data/img/wmo-22a5-16.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2612,6 +2790,8 @@
         "应用题",
         "小数除法"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-22a5-17.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2636,6 +2816,8 @@
         "植树问题",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-22a5-18.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2660,6 +2842,8 @@
         "数独",
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-22a5-19.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2684,6 +2868,8 @@
         "几何",
         "面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-22a5-20.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -2713,6 +2899,8 @@
         "定义新运算",
         "方程"
       ],
+      "board": "计算",
+      "topic": "定义新运算",
       "img": "data/img/wmo-26f5-01.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2742,6 +2930,8 @@
         "小数计算",
         "估算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-26f5-02.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2771,6 +2961,8 @@
         "循环小数",
         "除法"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-26f5-03.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2800,6 +2992,8 @@
         "日历问题",
         "周期"
       ],
+      "board": "应用题",
+      "topic": "周期与循环小数",
       "img": "data/img/wmo-26f5-04.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2829,6 +3023,8 @@
         "坐标",
         "轴对称"
       ],
+      "board": "几何图形",
+      "topic": "图形剪拼与对称",
       "img": "data/img/wmo-26f5-05.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2858,6 +3054,8 @@
         "图形规律",
         "数列"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-26f5-06.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2887,6 +3085,8 @@
         "行程问题",
         "重叠面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-26f5-07.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2916,6 +3116,8 @@
         "循环小数",
         "可能性"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-26f5-08.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2945,6 +3147,8 @@
         "逻辑推理",
         "竖式谜"
       ],
+      "board": "计算",
+      "topic": "数字谜与位值",
       "img": "data/img/wmo-26f5-09.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -2974,6 +3178,8 @@
         "平均数",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "和差倍与平均",
       "img": "data/img/wmo-26f5-10.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3003,6 +3209,8 @@
         "牛吃草",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-26f5-11.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3032,6 +3240,8 @@
         "立体图形",
         "骰子"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-26f5-12.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3061,6 +3271,8 @@
         "计数",
         "乘法原理"
       ],
+      "board": "计数",
+      "topic": "加乘原理",
       "img": "data/img/wmo-26f5-13.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3090,6 +3302,8 @@
         "抽屉原理",
         "计数"
       ],
+      "board": "组合",
+      "topic": "抽屉原理",
       "img": "data/img/wmo-26f5-14.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3118,6 +3332,8 @@
       "tags": [
         "容斥原理"
       ],
+      "board": "计数",
+      "topic": "容斥原理",
       "img": "data/img/wmo-26f5-15.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3147,6 +3363,8 @@
         "比赛计分",
         "最值"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-26f5-16.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3171,6 +3389,8 @@
         "单位换算",
         "小数计算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-26f5-17.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3195,6 +3415,8 @@
         "组合题",
         "格点面积"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-26f5-s18.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3218,6 +3440,8 @@
       "tags": [
         "格点面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-26f5-18-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3241,6 +3465,8 @@
       "tags": [
         "格点面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-26f5-18-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3264,6 +3490,8 @@
       "tags": [
         "格点面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-26f5-18-3.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3288,6 +3516,8 @@
         "数独",
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-26f5-19.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3312,6 +3542,8 @@
         "逻辑推理",
         "数图"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-26f5-20.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3341,6 +3573,8 @@
         "定义新运算",
         "分数计算"
       ],
+      "board": "计算",
+      "topic": "定义新运算",
       "img": "data/img/wmo-29a5-01.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3370,6 +3604,8 @@
         "立体图形",
         "表面积"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-29a5-02.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3399,6 +3635,8 @@
         "展开图",
         "空间想象"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-29a5-03.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3428,6 +3666,8 @@
         "图形规律",
         "周期"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-29a5-04.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3457,6 +3697,8 @@
         "计数",
         "乘法原理"
       ],
+      "board": "计数",
+      "topic": "加乘原理",
       "img": "data/img/wmo-29a5-05.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3485,6 +3727,8 @@
       "tags": [
         "分数的基本性质"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-29a5-06.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3514,6 +3758,8 @@
         "行程问题",
         "比例"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-29a5-07.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3543,6 +3789,8 @@
         "奇偶性",
         "不变量"
       ],
+      "board": "数论",
+      "topic": "奇偶性",
       "img": "data/img/wmo-29a5-08.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3572,6 +3820,8 @@
         "几何",
         "面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-29a5-09.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3601,6 +3851,8 @@
         "分数拆分",
         "因数"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-29a5-10.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3630,6 +3882,8 @@
         "质数",
         "列举"
       ],
+      "board": "数论",
+      "topic": "质数与因数",
       "img": "data/img/wmo-29a5-11.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3659,6 +3913,8 @@
         "循环小数",
         "周期"
       ],
+      "board": "应用题",
+      "topic": "周期与循环小数",
       "img": "data/img/wmo-29a5-12.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3688,6 +3944,8 @@
         "数论",
         "估算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-29a5-13.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3717,6 +3975,8 @@
         "周期",
         "幂的末位"
       ],
+      "board": "应用题",
+      "topic": "周期与循环小数",
       "img": "data/img/wmo-29a5-14.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3746,6 +4006,8 @@
         "立体图形",
         "计数"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-29a5-15.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3774,6 +4036,8 @@
       "tags": [
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-29a5-16.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3798,6 +4062,8 @@
         "分段计费",
         "小数计算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-29a5-17.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3823,6 +4089,8 @@
         "表面积",
         "体积"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-29a5-18.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3847,6 +4115,8 @@
         "组合题",
         "数独"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-29a5-s19.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3870,6 +4140,8 @@
       "tags": [
         "数独"
       ],
+      "board": "其他",
+      "topic": "数独与幻方",
       "img": "data/img/wmo-29a5-19-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3893,6 +4165,8 @@
       "tags": [
         "数独"
       ],
+      "board": "其他",
+      "topic": "数独与幻方",
       "img": "data/img/wmo-29a5-19-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3916,6 +4190,8 @@
       "tags": [
         "数独"
       ],
+      "board": "其他",
+      "topic": "数独与幻方",
       "img": "data/img/wmo-29a5-19-3.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3940,6 +4216,8 @@
         "数图",
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-29a5-20.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -3969,6 +4247,8 @@
         "计算",
         "四则运算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-30c5-01.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -3998,6 +4278,8 @@
         "周期问题",
         "余数"
       ],
+      "board": "应用题",
+      "topic": "周期与循环小数",
       "img": "data/img/wmo-30c5-02.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4027,6 +4309,8 @@
         "数列",
         "找规律"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-30c5-03.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4056,6 +4340,8 @@
         "余数",
         "整除"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-30c5-04.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4085,6 +4371,8 @@
         "图形计数",
         "正方形"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-30c5-05.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4114,6 +4402,8 @@
         "和差倍",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "和差倍与平均",
       "img": "data/img/wmo-30c5-06.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4143,6 +4433,8 @@
         "平方数",
         "取值范围"
       ],
+      "board": "数论",
+      "topic": "质数与因数",
       "img": "data/img/wmo-30c5-07.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4172,6 +4464,8 @@
         "三视图",
         "立体图形"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-30c5-08.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4201,6 +4495,8 @@
         "格点面积",
         "多边形面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-30c5-09.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4230,6 +4526,8 @@
         "时间单位",
         "估算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-30c5-10.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4259,6 +4557,8 @@
         "鸡兔同笼",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-30c5-11.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4288,6 +4588,8 @@
         "定义新运算",
         "方程"
       ],
+      "board": "计算",
+      "topic": "定义新运算",
       "img": "data/img/wmo-30c5-12.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4317,6 +4619,8 @@
         "平均数",
         "取整"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-30c5-13.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4346,6 +4650,8 @@
         "平均数",
         "容斥"
       ],
+      "board": "应用题",
+      "topic": "和差倍与平均",
       "img": "data/img/wmo-30c5-14.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4375,6 +4681,8 @@
         "最优化",
         "距离求和"
       ],
+      "board": "组合",
+      "topic": "最优化问题",
       "img": "data/img/wmo-30c5-15.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4404,6 +4712,8 @@
         "行程问题",
         "往返相遇"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-30c5-16.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4428,6 +4738,8 @@
         "简便计算",
         "乘法分配律"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-30c5-17.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4452,6 +4764,8 @@
         "组合题",
         "逻辑推理"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-30c5-s18.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4476,6 +4790,8 @@
         "逻辑推理",
         "真假话"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-30c5-18-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4500,6 +4816,8 @@
         "逻辑推理",
         "真假话"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-30c5-18-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4524,6 +4842,8 @@
         "组合题",
         "找次品"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-30c5-s19.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4548,6 +4868,8 @@
         "找次品",
         "天平"
       ],
+      "board": "组合",
+      "topic": "操作与构造",
       "img": "data/img/wmo-30c5-19-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4572,6 +4894,8 @@
         "找次品",
         "天平"
       ],
+      "board": "组合",
+      "topic": "操作与构造",
       "img": "data/img/wmo-30c5-19-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4597,6 +4921,8 @@
         "逻辑推理",
         "数独"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-30c5-s20.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4621,6 +4947,8 @@
         "逻辑推理",
         "数独"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-30c5-20-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4645,6 +4973,8 @@
         "逻辑推理",
         "数独"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-30c5-20-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -4674,6 +5004,8 @@
         "分数计算",
         "带分数"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-31f5-01.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4703,6 +5035,8 @@
         "最小公倍数",
         "周期"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-31f5-02.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4732,6 +5066,8 @@
         "立体图形",
         "计数"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-31f5-03.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4761,6 +5097,8 @@
         "概率",
         "组合计数"
       ],
+      "board": "计数",
+      "topic": "概率初步",
       "img": "data/img/wmo-31f5-04.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4790,6 +5128,8 @@
         "整除",
         "11的倍数特征"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-31f5-05.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4820,6 +5160,8 @@
         "立体图形",
         "表面积"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-31f5-06.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4849,6 +5191,8 @@
         "位值原理",
         "倍数"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-31f5-07.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4878,6 +5222,8 @@
         "平均数",
         "因数分解"
       ],
+      "board": "应用题",
+      "topic": "和差倍与平均",
       "img": "data/img/wmo-31f5-08.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4907,6 +5253,8 @@
         "博弈论",
         "必胜策略"
       ],
+      "board": "组合",
+      "topic": "博弈与策略",
       "img": "data/img/wmo-31f5-09.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4936,6 +5284,8 @@
         "长方体",
         "展开图"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-31f5-10.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4965,6 +5315,8 @@
         "同余",
         "余数"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-31f5-11.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -4994,6 +5346,8 @@
         "方程",
         "倒数"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-31f5-12.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5023,6 +5377,8 @@
         "流水行船",
         "相遇追及"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-31f5-13.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5053,6 +5409,8 @@
         "周期",
         "计数"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-31f5-14.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5082,6 +5440,8 @@
         "乘法原理",
         "分类计数"
       ],
+      "board": "计数",
+      "topic": "加乘原理",
       "img": "data/img/wmo-31f5-15.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5111,6 +5471,8 @@
         "抽屉原理",
         "余数分类"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-31f5-16.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5135,6 +5497,8 @@
         "组合题",
         "分数应用题"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-31f5-s17.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5162,6 +5526,8 @@
         "分数比较",
         "行程"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-31f5-17-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5186,6 +5552,8 @@
         "分数应用题",
         "位置判断"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-31f5-17-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5210,6 +5578,8 @@
         "组合题",
         "立体图形"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-31f5-s18.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5235,6 +5605,8 @@
         "展开图",
         "面积"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-31f5-18-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5260,6 +5632,8 @@
         "展开图",
         "棱长总和"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-31f5-18-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5284,6 +5658,8 @@
         "组合题",
         "逻辑推理"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-31f5-s19.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5313,6 +5689,8 @@
         "逻辑推理",
         "真假话"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-31f5-19-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5337,6 +5715,8 @@
         "逻辑推理",
         "最大公因数"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-31f5-19-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5361,6 +5741,8 @@
         "组合题",
         "镜面反射"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-31f5-s20.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5385,6 +5767,8 @@
         "镜面反射",
         "光路图"
       ],
+      "board": "其他",
+      "topic": "空间与光路",
       "img": "data/img/wmo-31f5-20-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5410,6 +5794,8 @@
         "周期",
         "展开"
       ],
+      "board": "其他",
+      "topic": "空间与光路",
       "img": "data/img/wmo-31f5-20-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5439,6 +5825,8 @@
         "计算",
         "提取公因数"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-32c5-01.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5468,6 +5856,8 @@
         "归一问题",
         "步长"
       ],
+      "board": "应用题",
+      "topic": "工程与归一",
       "img": "data/img/wmo-32c5-02.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5497,6 +5887,8 @@
         "小数",
         "计数单位"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-32c5-03.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5526,6 +5918,8 @@
         "立体图形",
         "体积"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-32c5-04.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5555,6 +5949,8 @@
         "方程",
         "代入求值"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-32c5-05.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5584,6 +5980,8 @@
         "小数点",
         "差倍"
       ],
+      "board": "计算",
+      "topic": "错中求解",
       "img": "data/img/wmo-32c5-06.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5613,6 +6011,8 @@
         "循环小数",
         "数字和"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-32c5-07.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5642,6 +6042,8 @@
         "图形计数",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-32c5-08.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5670,6 +6072,8 @@
       "tags": [
         "周期问题"
       ],
+      "board": "应用题",
+      "topic": "周期与循环小数",
       "img": "data/img/wmo-32c5-09.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5699,6 +6103,8 @@
         "几何",
         "面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-32c5-10.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5728,6 +6134,8 @@
         "平均数",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "和差倍与平均",
       "img": "data/img/wmo-32c5-11.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5757,6 +6165,8 @@
         "周期",
         "行程问题"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-32c5-12.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5786,6 +6196,8 @@
         "数阵",
         "最值"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-32c5-13.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -5815,6 +6227,8 @@
         "整数组分",
         "最值"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-32c5-14.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5844,6 +6258,8 @@
         "最值",
         "策略"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-32c5-15.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5873,6 +6289,8 @@
         "图论",
         "计数"
       ],
+      "board": "其他",
+      "topic": "空间与光路",
       "img": "data/img/wmo-32c5-16.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5897,6 +6315,8 @@
         "组合题",
         "分段计费"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-32c5-s17.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5921,6 +6341,8 @@
         "分段计费",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-32c5-17-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5944,6 +6366,8 @@
       "tags": [
         "分段计费"
       ],
+      "board": "应用题",
+      "topic": "分段收费",
       "img": "data/img/wmo-32c5-17-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5968,6 +6392,8 @@
         "分段计费",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-32c5-17-3.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -5992,6 +6418,8 @@
         "组合题",
         "等比增长"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-32c5-s18.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6015,6 +6443,8 @@
       "tags": [
         "等比增长"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-32c5-18-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6039,6 +6469,8 @@
         "进一法",
         "等比增长"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-32c5-18-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6063,6 +6495,8 @@
         "组合题",
         "逻辑推理"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-32c5-s19.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6086,6 +6520,8 @@
       "tags": [
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-32c5-19-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6109,6 +6545,8 @@
       "tags": [
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-32c5-19-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6132,6 +6570,8 @@
       "tags": [
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-32c5-19-3.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6156,6 +6596,8 @@
         "组合题",
         "定义新运算"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-32c5-s20.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6179,6 +6621,8 @@
       "tags": [
         "定义新运算"
       ],
+      "board": "计算",
+      "topic": "定义新运算",
       "img": "data/img/wmo-32c5-20-1.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6203,6 +6647,8 @@
         "定义新运算",
         "数字根"
       ],
+      "board": "计算",
+      "topic": "定义新运算",
       "img": "data/img/wmo-32c5-20-2.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6227,6 +6673,8 @@
         "定义新运算",
         "同余"
       ],
+      "board": "计算",
+      "topic": "定义新运算",
       "img": "data/img/wmo-32c5-20-3.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -6256,6 +6704,8 @@
         "图形旋转",
         "观察"
       ],
+      "board": "几何图形",
+      "topic": "图形剪拼与对称",
       "img": "data/img/wmo-33c5-01.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -6285,6 +6735,8 @@
         "三视图",
         "空间想象"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-33c5-02.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -6313,6 +6765,8 @@
       "tags": [
         "图形规律"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-33c5-03.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -6341,6 +6795,8 @@
       "tags": [
         "分数运算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-33c5-04.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -6370,6 +6826,8 @@
         "立体图形",
         "体积"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-33c5-05.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -6399,6 +6857,8 @@
         "分数",
         "方程"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-33c5-06.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -6428,6 +6888,8 @@
         "质数",
         "枚举"
       ],
+      "board": "数论",
+      "topic": "质数与因数",
       "img": "data/img/wmo-33c5-07.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -6457,6 +6919,8 @@
         "方案优化",
         "方程"
       ],
+      "board": "组合",
+      "topic": "最优化问题",
       "img": "data/img/wmo-33c5-08.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -6486,6 +6950,8 @@
         "整除",
         "数字和"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-33c5-09.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -6515,6 +6981,8 @@
         "因数分解",
         "长方体"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-33c5-10.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -6544,6 +7012,8 @@
         "数列",
         "递推"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-33c5-11.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -6573,6 +7043,8 @@
         "因数分解",
         "最值"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-33c5-12.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -6602,6 +7074,8 @@
         "行程问题",
         "多次相遇"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-33c5-13.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -6630,6 +7104,8 @@
       "tags": [
         "排列组合"
       ],
+      "board": "计数",
+      "topic": "加乘原理",
       "img": "data/img/wmo-33c5-14.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -6659,6 +7135,8 @@
         "整除",
         "等差数列"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-33c5-15.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -6688,6 +7166,8 @@
         "几何",
         "面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-33c5-16.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -6712,6 +7192,8 @@
         "组合题",
         "分数应用题"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-33c5-s17.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -6736,6 +7218,8 @@
         "分数应用题",
         "方程"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-33c5-17-1.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -6760,6 +7244,8 @@
         "和差",
         "分数运算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-33c5-17-2.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -6785,6 +7271,8 @@
         "整除",
         "最小公倍数"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-33c5-s18.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -6809,6 +7297,8 @@
         "整除",
         "余数"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-33c5-18-1.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -6833,6 +7323,8 @@
         "最小公倍数",
         "整除"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-33c5-18-2.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -6858,6 +7350,8 @@
         "数独",
         "逻辑推理"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-33c5-s19.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -6882,6 +7376,8 @@
         "数独",
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-33c5-19-1.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -6906,6 +7402,8 @@
         "数独",
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-33c5-19-2.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -6930,6 +7428,8 @@
         "组合题",
         "策略游戏"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-33c5-s20.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -6954,6 +7454,8 @@
         "策略游戏",
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-33c5-20-1.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -6978,6 +7480,8 @@
         "策略游戏",
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-33c5-20-2.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -7007,6 +7511,8 @@
         "分数",
         "拆分"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-33s5-01.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -7036,6 +7542,8 @@
         "比与分数",
         "方程"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-33s5-02.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -7065,6 +7573,8 @@
         "立体图形",
         "展开图"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-33s5-03.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -7094,6 +7604,8 @@
         "裂项",
         "阶乘"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-33s5-04.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -7123,6 +7635,8 @@
         "计数",
         "分类讨论"
       ],
+      "board": "计数",
+      "topic": "页码与数字计数",
       "img": "data/img/wmo-33s5-05.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -7152,6 +7666,8 @@
         "质数",
         "奇偶性"
       ],
+      "board": "数论",
+      "topic": "质数与因数",
       "img": "data/img/wmo-33s5-06.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7180,6 +7696,8 @@
       "tags": [
         "容斥原理"
       ],
+      "board": "计数",
+      "topic": "容斥原理",
       "img": "data/img/wmo-33s5-07.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7209,6 +7727,8 @@
         "三视图",
         "体积"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-33s5-08.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7238,6 +7758,8 @@
         "数列",
         "倍增"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-33s5-09.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7267,6 +7789,8 @@
         "比例",
         "温度计"
       ],
+      "board": "应用题",
+      "topic": "比例与分数应用",
       "img": "data/img/wmo-33s5-10.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7296,6 +7820,8 @@
         "因数个数",
         "分解质因数"
       ],
+      "board": "数论",
+      "topic": "质数与因数",
       "img": "data/img/wmo-33s5-11.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7325,6 +7851,8 @@
         "余数",
         "整除性质"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-33s5-12.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7354,6 +7882,8 @@
         "流水行船",
         "相遇问题"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-33s5-13.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7383,6 +7913,8 @@
         "博弈论",
         "必胜策略"
       ],
+      "board": "组合",
+      "topic": "博弈与策略",
       "img": "data/img/wmo-33s5-14.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -7412,6 +7944,8 @@
         "染色问题",
         "计数"
       ],
+      "board": "几何图形",
+      "topic": "图形剪拼与对称",
       "img": "data/img/wmo-33s5-15.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -7441,6 +7975,8 @@
         "逻辑推理",
         "帽子问题"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-33s5-16.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -7465,6 +8001,8 @@
         "组合题",
         "浓度问题"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-33s5-s17.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -7489,6 +8027,8 @@
         "浓度",
         "分数比较"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-33s5-17-1.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -7513,6 +8053,8 @@
         "分数运算",
         "容积"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-33s5-17-2.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -7537,6 +8079,8 @@
         "组合题",
         "立体图形"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-33s5-s18.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -7561,6 +8105,8 @@
         "立体图形",
         "方程"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-33s5-18-1.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -7585,6 +8131,8 @@
         "表面积",
         "立体图形"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-33s5-18-2.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -7610,6 +8158,8 @@
         "数论",
         "对称数"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-33s5-s19.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -7634,6 +8184,8 @@
         "对称数",
         "整除"
       ],
+      "board": "几何图形",
+      "topic": "图形剪拼与对称",
       "img": "data/img/wmo-33s5-19-1.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -7658,6 +8210,8 @@
         "对称数",
         "定义新运算"
       ],
+      "board": "计算",
+      "topic": "定义新运算",
       "img": "data/img/wmo-33s5-19-2.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -7682,6 +8236,8 @@
         "逻辑推理",
         "光线反射"
       ],
+      "board": "其他",
+      "topic": "空间与光路",
       "img": "data/img/wmo-33s5-20.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -7711,6 +8267,8 @@
         "计算",
         "提取公因数"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-34f5-01.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -7739,6 +8297,8 @@
       "tags": [
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-34f5-02.webp",
       "page": "试卷-1.png",
       "bbox": [
@@ -7768,6 +8328,8 @@
         "计算",
         "设元"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-34f5-03.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7797,6 +8359,8 @@
         "方程",
         "和差倍"
       ],
+      "board": "应用题",
+      "topic": "和差倍与平均",
       "img": "data/img/wmo-34f5-04.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7825,6 +8389,8 @@
       "tags": [
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-34f5-05.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7854,6 +8420,8 @@
         "抽屉原理",
         "最不利原则"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-34f5-06.webp",
       "page": "试卷-2.png",
       "bbox": [
@@ -7883,6 +8451,8 @@
         "数论",
         "周期"
       ],
+      "board": "应用题",
+      "topic": "周期与循环小数",
       "img": "data/img/wmo-34f5-07.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -7912,6 +8482,8 @@
         "博弈论",
         "必胜策略"
       ],
+      "board": "组合",
+      "topic": "博弈与策略",
       "img": "data/img/wmo-34f5-08.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -7941,6 +8513,8 @@
         "计数",
         "乘法原理"
       ],
+      "board": "计数",
+      "topic": "加乘原理",
       "img": "data/img/wmo-34f5-09.webp",
       "page": "试卷-3.png",
       "bbox": [
@@ -7970,6 +8544,8 @@
         "立体图形",
         "周期"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-34f5-10.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -7999,6 +8575,8 @@
         "最大公因数",
         "植树问题"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-34f5-11.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -8028,6 +8606,8 @@
         "小数点",
         "差倍"
       ],
+      "board": "计算",
+      "topic": "错中求解",
       "img": "data/img/wmo-34f5-12.webp",
       "page": "试卷-4.png",
       "bbox": [
@@ -8056,6 +8636,8 @@
       "tags": [
         "容斥原理"
       ],
+      "board": "计数",
+      "topic": "容斥原理",
       "img": "data/img/wmo-34f5-13.webp",
       "page": "试卷-5.png",
       "bbox": [
@@ -8085,6 +8667,8 @@
         "牛吃草",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-34f5-14.webp",
       "page": "试卷-5.png",
       "bbox": [
@@ -8114,6 +8698,8 @@
         "行程问题",
         "相遇"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-34f5-15.webp",
       "page": "试卷-5.png",
       "bbox": [
@@ -8144,6 +8730,8 @@
         "面积比",
         "燕尾模型"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-34f5-16.webp",
       "page": "试卷-6.png",
       "bbox": [
@@ -8168,6 +8756,8 @@
         "组合题",
         "优惠方案"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-34f5-s17.webp",
       "page": "试卷-6.png",
       "bbox": [
@@ -8192,6 +8782,8 @@
         "优惠方案",
         "整数规划"
       ],
+      "board": "应用题",
+      "topic": "分段收费",
       "img": "data/img/wmo-34f5-17-1.webp",
       "page": "试卷-6.png",
       "bbox": [
@@ -8215,6 +8807,8 @@
       "tags": [
         "优惠方案"
       ],
+      "board": "应用题",
+      "topic": "分段收费",
       "img": "data/img/wmo-34f5-17-2.webp",
       "page": "试卷-6.png",
       "bbox": [
@@ -8239,6 +8833,8 @@
         "组合题",
         "几何"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-34f5-s18.webp",
       "page": "试卷-6.png",
       "bbox": [
@@ -8263,6 +8859,8 @@
         "几何",
         "面积"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-34f5-18-1.webp",
       "page": "试卷-6.png",
       "bbox": [
@@ -8287,6 +8885,8 @@
         "几何",
         "线段长度"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-34f5-18-2.webp",
       "page": "试卷-6.png",
       "bbox": [
@@ -8311,6 +8911,8 @@
         "组合题",
         "比赛计分"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-34f5-s19.webp",
       "page": "试卷-7.png",
       "bbox": [
@@ -8334,6 +8936,8 @@
       "tags": [
         "组合计数"
       ],
+      "board": "计数",
+      "topic": "加乘原理",
       "img": "data/img/wmo-34f5-19-1.webp",
       "page": "试卷-7.png",
       "bbox": [
@@ -8358,6 +8962,8 @@
         "最值",
         "比赛计分"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-34f5-19-2.webp",
       "page": "试卷-7.png",
       "bbox": [
@@ -8383,6 +8989,8 @@
         "构造",
         "比赛计分"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-34f5-19-3.webp",
       "page": "试卷-7.png",
       "bbox": [
@@ -8407,6 +9015,8 @@
         "组合题",
         "数列"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-34f5-s20.webp",
       "page": "试卷-7.png",
       "bbox": [
@@ -8430,6 +9040,8 @@
       "tags": [
         "数列"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-34f5-20-1.webp",
       "page": "试卷-7.png",
       "bbox": [
@@ -8454,6 +9066,8 @@
         "数论",
         "数列"
       ],
+      "board": "计算",
+      "topic": "数列与找规律",
       "img": "data/img/wmo-34f5-20-2.webp",
       "page": "试卷-7.png",
       "bbox": [
@@ -8483,6 +9097,8 @@
         "分数求和",
         "数形结合"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-35s5-01.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -8512,6 +9128,8 @@
         "计算",
         "提取公因数"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-35s5-02.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -8541,6 +9159,8 @@
         "质数",
         "不定方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-35s5-03.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -8570,6 +9190,8 @@
         "分数运算",
         "容积"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-35s5-04.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -8599,6 +9221,8 @@
         "分解质因数",
         "逻辑推理"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-35s5-05.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -8628,6 +9252,8 @@
         "对称",
         "概率"
       ],
+      "board": "几何图形",
+      "topic": "图形剪拼与对称",
       "img": "data/img/wmo-35s5-06.webp",
       "page": "试卷-1.jpg",
       "bbox": [
@@ -8657,6 +9283,8 @@
         "立体图形",
         "体积"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-35s5-07.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -8686,6 +9314,8 @@
         "牛吃草",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-35s5-08.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -8715,6 +9345,8 @@
         "几何",
         "坐标法"
       ],
+      "board": "几何图形",
+      "topic": "平面图形面积",
       "img": "data/img/wmo-35s5-09.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -8744,6 +9376,8 @@
         "整除",
         "排列组合"
       ],
+      "board": "数论",
+      "topic": "整除与余数",
       "img": "data/img/wmo-35s5-10.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -8773,6 +9407,8 @@
         "行程问题",
         "环形跑道"
       ],
+      "board": "应用题",
+      "topic": "行程问题",
       "img": "data/img/wmo-35s5-11.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -8803,6 +9439,8 @@
         "对称",
         "计数"
       ],
+      "board": "几何图形",
+      "topic": "图形剪拼与对称",
       "img": "data/img/wmo-35s5-12.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -8832,6 +9470,8 @@
         "立体图形",
         "染色"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-35s5-13.webp",
       "page": "试卷-2.jpg",
       "bbox": [
@@ -8861,6 +9501,8 @@
         "单位分数",
         "因数分解"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-35s5-14.webp",
       "page": "试卷-3.jpg",
       "bbox": [
@@ -8890,6 +9532,8 @@
         "光线反射",
         "逻辑推理"
       ],
+      "board": "其他",
+      "topic": "空间与光路",
       "img": "data/img/wmo-35s5-15.webp",
       "page": "试卷-3.jpg",
       "bbox": [
@@ -8919,6 +9563,8 @@
         "逻辑推理",
         "赛程安排"
       ],
+      "board": "组合",
+      "topic": "逻辑推理",
       "img": "data/img/wmo-35s5-16.webp",
       "page": "试卷-3.jpg",
       "bbox": [
@@ -8943,6 +9589,8 @@
         "组合题",
         "博弈论"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-35s5-s17.webp",
       "page": "试卷-3.jpg",
       "bbox": [
@@ -8967,6 +9615,8 @@
         "博弈论",
         "必胜策略"
       ],
+      "board": "组合",
+      "topic": "博弈与策略",
       "img": "data/img/wmo-35s5-17-1.webp",
       "page": "试卷-3.jpg",
       "bbox": [
@@ -8991,6 +9641,8 @@
         "博弈论",
         "必胜策略"
       ],
+      "board": "组合",
+      "topic": "博弈与策略",
       "img": "data/img/wmo-35s5-17-2.webp",
       "page": "试卷-3.jpg",
       "bbox": [
@@ -9015,6 +9667,8 @@
         "博弈论",
         "对称策略"
       ],
+      "board": "组合",
+      "topic": "博弈与策略",
       "img": "data/img/wmo-35s5-17-3.webp",
       "page": "试卷-3.jpg",
       "bbox": [
@@ -9039,6 +9693,8 @@
         "组合题",
         "和差问题"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-35s5-s18.webp",
       "page": "试卷-4.jpg",
       "bbox": [
@@ -9062,6 +9718,8 @@
       "tags": [
         "和差问题"
       ],
+      "board": "应用题",
+      "topic": "和差倍与平均",
       "img": "data/img/wmo-35s5-18-1.webp",
       "page": "试卷-4.jpg",
       "bbox": [
@@ -9086,6 +9744,8 @@
         "和差问题",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "列方程解应用题",
       "img": "data/img/wmo-35s5-18-2.webp",
       "page": "试卷-4.jpg",
       "bbox": [
@@ -9110,6 +9770,8 @@
         "组合题",
         "立体图形"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-35s5-s19.webp",
       "page": "试卷-4.jpg",
       "bbox": [
@@ -9134,6 +9796,8 @@
         "表面积",
         "立体图形"
       ],
+      "board": "几何图形",
+      "topic": "立体图形",
       "img": "data/img/wmo-35s5-19-1.webp",
       "page": "试卷-4.jpg",
       "bbox": [
@@ -9158,6 +9822,8 @@
         "排水法",
         "方程"
       ],
+      "board": "应用题",
+      "topic": "工程与归一",
       "img": "data/img/wmo-35s5-19-2.webp",
       "page": "试卷-4.jpg",
       "bbox": [
@@ -9182,6 +9848,8 @@
         "组合题",
         "游戏策略"
       ],
+      "board": null,
+      "topic": null,
       "img": "data/img/wmo-35s5-s20.webp",
       "page": "试卷-4.jpg",
       "bbox": [
@@ -9206,6 +9874,8 @@
         "游戏策略",
         "计算"
       ],
+      "board": "计算",
+      "topic": "计算与巧算",
       "img": "data/img/wmo-35s5-20-1.webp",
       "page": "试卷-4.jpg",
       "bbox": [
@@ -9230,6 +9900,8 @@
         "游戏策略",
         "最值"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-35s5-20-2.webp",
       "page": "试卷-4.jpg",
       "bbox": [
@@ -9254,6 +9926,8 @@
         "游戏策略",
         "最值"
       ],
+      "board": "组合",
+      "topic": "最值问题",
       "img": "data/img/wmo-35s5-20-3.webp",
       "page": "试卷-4.jpg",
       "bbox": [
