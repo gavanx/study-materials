@@ -41,7 +41,10 @@
 - **错题本 / 收藏**：做错的自动收录，可重做
 - **打卡**：当天完成「今日题」记一次，连续天数按自然日回溯；「换一题」属于加练，不计入打卡
 
-数据存在浏览器 `localStorage`（`quiz_progress` / `quiz_wrong` / `quiz_fav`），按域名隔离，换设备或清缓存不会同步。
+数据默认存在浏览器 `localStorage`（`quiz_progress` / `quiz_wrong` / `quiz_fav`），按域名隔离，换设备或清缓存不会同步。
+
+需要多设备共享时，按 [CLOUD-SYNC.md](CLOUD-SYNC.md) 接腾讯云开发（CloudBase）：匿名登录 + 家庭口令，
+数据以事件日志的形式追加到云端，本地优先、断网可用。
 
 ## 加新卷子
 

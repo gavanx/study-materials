@@ -32,6 +32,8 @@
     flex: 0 0 auto; text-align: center; background: var(--primary-bg);
     color: var(--primary); border-radius: 12px; padding: 6px 12px; line-height: 1.15;
   }
+  .sync-btn { background: none; border: none; font-size: 20px; color: var(--soft); cursor: pointer; padding: 2px 6px; }
+  .sync-btn.on { color: var(--primary); }
   .streak b { display: block; font-size: 20px; }
   .streak span { font-size: 11.5px; }
 
@@ -185,6 +187,19 @@
     .rail button.on { color: var(--primary); font-weight: 700; background: var(--primary-bg); }
     .rail .badge { position: absolute; top: 6px; right: 12px; }
   }
+  /* 云同步面板 */
+  .sheet { position: fixed; inset: 0; background: rgba(17,24,39,.45); display: none; z-index: 80; align-items: flex-end; justify-content: center; }
+  .sheet.show { display: flex; }
+  .sheet-inner { background: #fff; width: 100%; max-width: 520px; border-radius: 18px 18px 0 0; padding: 16px 16px calc(20px + env(safe-area-inset-bottom)); }
+  .sheet-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .sheet-head b { font-size: 17px; }
+  .sheet-head button { background: none; border: none; font-size: 20px; color: var(--soft); cursor: pointer; }
+  .sync-status { font-size: 13.5px; color: var(--soft); line-height: 1.7; margin-bottom: 12px; }
+  .sync-status code { background: #f1f5f9; border-radius: 4px; padding: 1px 4px; }
+  .sync-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 17px; letter-spacing: 1.5px; }
+  .sync-row { display: flex; gap: 8px; margin-top: 10px; }
+  .sync-row input { flex: 1; min-width: 0; font-size: 16px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; font-family: inherit; }
+  .sync-label { font-size: 13px; color: var(--soft); margin-top: 14px; }
   .loading { text-align: center; color: var(--soft); padding: 60px 10px; }
   .toast {
     position: fixed; left: 50%; bottom: 96px; transform: translate(-50%, 10px);
@@ -200,6 +215,7 @@
     <h1>每日一题</h1>
     <div class="sub" id="sub">正在加载题库…</div>
   </div>
+  <button class="sync-btn" id="syncBtn" aria-label="云同步">☁</button>
   <div class="streak"><b data-streak>0</b><span>连续打卡</span></div>
 </header>
 
@@ -219,11 +235,21 @@
   <button data-tab="today" class="on"><span class="ico">📅</span>今日</button>
   <button data-tab="wrong"><span class="ico">📕</span>错题本<span class="badge" data-wrong-badge hidden>0</span></button>
   <button data-tab="fav"><span class="ico">⭐</span>收藏</button>
+  <button id="syncBtnRail" style="margin-top:auto"><span class="ico">☁</span>同步</button>
 </aside>
+
+<div class="sheet" id="syncSheet">
+  <div class="sheet-inner">
+    <div class="sheet-head"><b>云同步</b><button id="syncClose" aria-label="关闭">✕</button></div>
+    <div id="syncBody"></div>
+  </div>
+</div>
 
 <div class="zoom" id="zoom"><button class="close" id="zoomClose">✕</button><img id="zoomImg" alt=""></div>
 <div class="toast" id="toast"></div>
 
+<script src="config.js"></script>
+<script src="sync.js"></script>
 <script>
 (() => {
   'use strict';
@@ -324,6 +350,7 @@
       p[state.date] = { qid, ok, ts: Date.now() };
       write(STORE.progress, p);
       renderStreak();
+      if (window.QuizSync) QuizSync.push({ kind: 'done', qid, date: state.date, ok });
     }
   }
   function streakDays() {
@@ -347,11 +374,13 @@
     b[qid] = { ts: Date.now(), times: (b[qid]?.times || 0) + 1 };
     write(STORE.wrong, b);
     renderBadge();
+    if (window.QuizSync) QuizSync.push({ kind: 'wrong', qid });
   }
   function toggleFav(qid) {
     const b = favBook();
     if (b[qid]) delete b[qid]; else b[qid] = { ts: Date.now() };
     write(STORE.fav, b);
+    if (window.QuizSync) QuizSync.push({ kind: b[qid] ? 'fav' : 'unfav', qid });
     return !!b[qid];
   }
   function renderBadge() {
@@ -678,6 +707,86 @@
     });
   });
 
+  /* ---------- 云同步 ---------- */
+  const syncSheet = document.getElementById('syncSheet');
+
+  function renderSyncPanel() {
+    const body = document.getElementById('syncBody');
+    if (!body) return;
+    const st = window.QuizSync ? QuizSync.status() : { configured: false };
+    if (!st.configured) {
+      body.innerHTML = `<div class="sync-status">云端还没配置。在 <code>quiz/config.js</code> 里填入 CloudBase 的 envId 与 accessKey，刷新页面后即可多设备同步。<br><br>现在打卡、错题本、收藏只保存在这台设备的浏览器里。</div>`;
+      return;
+    }
+    body.innerHTML = `
+      <div class="sync-status">
+        状态：${st.ready ? '已连接云端' : '未连接'}${st.syncing ? ' · 同步中…' : ''}
+        ${st.error ? `<br><span style="color:#b91c1c">${esc(st.error)}</span>` : ''}
+      </div>
+      <div class="sync-label">家庭口令（另一台设备输入同一口令即可共用进度）</div>
+      <div class="sync-row">
+        <input id="familyCode" class="sync-code" readonly value="${esc(st.family || '')}">
+        <button class="btn" id="copyFamily">复制</button>
+      </div>
+      <div class="sync-label">加入已有的家庭</div>
+      <div class="sync-row">
+        <input id="joinCode" placeholder="输入 10 位口令" autocomplete="off">
+        <button class="btn ghost" id="joinBtn">加入</button>
+      </div>
+      <div class="sync-row"><button class="btn gray" id="syncNow">立即同步</button></div>
+      <div class="hint">口令相当于家庭账号，知道口令的人都能看到这份进度，别公开分享。</div>`;
+
+    document.getElementById('copyFamily').addEventListener('click', async () => {
+      const code = document.getElementById('familyCode').value;
+      try { await navigator.clipboard.writeText(code); toast('口令已复制'); }
+      catch (e) {
+        const el = document.getElementById('familyCode');
+        el.select(); document.execCommand && document.execCommand('copy'); toast('口令已复制');
+      }
+    });
+    document.getElementById('joinBtn').addEventListener('click', async () => {
+      const v = (document.getElementById('joinCode').value || '').trim().toUpperCase();
+      if (v.length < 6) { toast('口令太短'); return; }
+      QuizSync.setFamily(v);
+      await doSyncDown(true);
+      renderSyncPanel();
+    });
+    document.getElementById('syncNow').addEventListener('click', async () => {
+      await doSyncDown(true);
+      renderSyncPanel();
+    });
+  }
+
+  async function doSyncDown(showToast) {
+    if (!window.QuizSync) return;
+    const events = await QuizSync.syncDown();
+    if (!events) return;
+    const merged = QuizSync.merge({
+      progress: read(STORE.progress, {}),
+      wrong: read(STORE.wrong, {}),
+      fav: read(STORE.fav, {})
+    }, events);
+    write(STORE.progress, merged.progress);
+    write(STORE.wrong, merged.wrong);
+    write(STORE.fav, merged.fav);
+    renderBadge(); renderStreak(); render();
+    if (showToast) toast(`已同步 ${events.length} 条云端记录`);
+  }
+
+  function openSync() { renderSyncPanel(); syncSheet.classList.add('show'); }
+  function closeSync() { syncSheet.classList.remove('show'); }
+  document.getElementById('syncBtn').addEventListener('click', openSync);
+  document.getElementById('syncBtnRail').addEventListener('click', openSync);
+  document.getElementById('syncClose').addEventListener('click', closeSync);
+  syncSheet.addEventListener('click', e => { if (e.target === syncSheet) closeSync(); });
+
+  async function initCloud() {
+    if (!window.QuizSync || !QuizSync.status().configured) return;
+    const st = await QuizSync.init();
+    QuizSync.onChange(() => { if (syncSheet.classList.contains('show')) renderSyncPanel(); });
+    if (st.ready) await doSyncDown(false);
+  }
+
   /* ---------- 启动 ---------- */
   async function boot() {
     const params = new URLSearchParams(location.search);
@@ -707,6 +816,7 @@
 
     loadDailyQuestion();
     render();
+    initCloud();
   }
 
   boot();
