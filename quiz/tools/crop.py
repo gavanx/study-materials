@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageFilter, ImageOps
 
 Image.MAX_IMAGE_PIXELS = None
 
@@ -25,8 +25,8 @@ QUIZ = ROOT / "quiz"
 MANIFEST_DIR = QUIZ / "tools" / "manifest"
 IMG_DIR = QUIZ / "data" / "img"
 
-MAX_WIDTH = 1100
-WEBP_QUALITY = 82
+MAX_WIDTH = 1400
+WEBP_QUALITY = 85
 INK_THRESHOLD = 110          # 低于此灰度视为墨迹；浅灰水印会被忽略
 PAD_X_RATIO = 0.015
 PAD_Y_RATIO = 0.004
@@ -64,6 +64,9 @@ def crop_item(img: Image.Image, gray: np.ndarray, item: dict, out_path: Path):
         ratio = MAX_WIDTH / piece.width
         piece = piece.resize((MAX_WIDTH, max(1, int(piece.height * ratio))), Image.LANCZOS)
     piece = piece.convert("RGB")
+    # 扫描件普遍发灰，做一次对比度拉伸 + 轻锐化，字更清爽
+    piece = ImageOps.autocontrast(piece, cutoff=1)
+    piece = piece.filter(ImageFilter.UnsharpMask(radius=1.2, percent=110, threshold=3))
     piece.save(out_path, "WEBP", quality=WEBP_QUALITY, method=6)
     return [round(x0 / w, 4), round(y0 / h, 4), round(x1 / w, 4), round(y1 / h, 4)]
 
@@ -128,6 +131,8 @@ def build_manifest(path: Path, sets: list, questions: list, sheets: list):
                 "explain": item.get("explain", ""),
                 "stemId": item.get("stemId"),
                 "tags": item.get("tags", []),
+                "board": item.get("board"),
+                "topic": item.get("topic"),
                 "img": f"data/img/{item['id']}.webp",
                 "page": src.name,
                 "bbox": bbox,
