@@ -32,23 +32,29 @@ PAD_X_RATIO = 0.015
 PAD_Y_RATIO = 0.004
 
 
-def ink_columns(gray: np.ndarray, y0: int, y1: int):
-    """返回 [y0,y1) 行区间内墨迹的最小/最大列号。"""
-    band = gray[y0:y1]
+def ink_columns(gray: np.ndarray, y0: int, y1: int, x_lo: int = 0, x_hi: int | None = None):
+    """返回 [y0,y1) 行区间、[x_lo,x_hi) 列区间内墨迹的最小/最大列号。"""
+    x_hi = gray.shape[1] if x_hi is None else x_hi
+    band = gray[y0:y1, x_lo:x_hi]
     cols = (band < INK_THRESHOLD).any(axis=0)
     if not cols.any():
         return None
     xs = np.flatnonzero(cols)
-    return int(xs[0]), int(xs[-1])
+    return int(xs[0]) + x_lo, int(xs[-1]) + x_lo
 
 
 def crop_item(img: Image.Image, gray: np.ndarray, item: dict, out_path: Path):
+    """item["y"] 必填；item["x"] 可选，用于横版双栏卷子限定所属栏。"""
     w, h = img.size
     y0 = max(0, int(item["y"][0] * h))
     y1 = min(h, int(item["y"][1] * h))
-    span = ink_columns(gray, y0, y1) or (0, w - 1)
-    x0 = max(0, span[0] - int(PAD_X_RATIO * w))
-    x1 = min(w, span[1] + int(PAD_X_RATIO * w))
+    if item.get("x"):
+        col_lo, col_hi = int(item["x"][0] * w), int(item["x"][1] * w)
+    else:
+        col_lo, col_hi = 0, w
+    span = ink_columns(gray, y0, y1, col_lo, col_hi) or (col_lo, col_hi - 1)
+    x0 = max(col_lo, span[0] - int(PAD_X_RATIO * w))
+    x1 = min(col_hi, span[1] + int(PAD_X_RATIO * w))
     py = int(PAD_Y_RATIO * h)
     y0 = max(0, y0 - py)
     y1 = min(h, y1 + py)
@@ -60,6 +66,37 @@ def crop_item(img: Image.Image, gray: np.ndarray, item: dict, out_path: Path):
     piece = piece.convert("RGB")
     piece.save(out_path, "WEBP", quality=WEBP_QUALITY, method=6)
     return [round(x0 / w, 4), round(y0 / h, 4), round(x1 / w, 4), round(y1 / h, 4)]
+
+
+def crop_parts(parts: list, out_path: Path):
+    """题目跨栏/跨页时，按 parts 依次裁出后竖向拼接。
+
+    parts: [{"file": 相对路径, "y": [y0,y1], "x": [x0,x1]?}, ...]
+    """
+    pieces = []
+    for part in parts:
+        img = Image.open(ROOT / part["file"])
+        gray = np.asarray(img.convert("L"))
+        tmp = {"y": part["y"], "x": part.get("x")}
+        scratch = out_path.with_suffix(".part.webp")
+        crop_item(img, gray, tmp, scratch)
+        pieces.append(Image.open(scratch).convert("RGB"))
+        scratch.unlink(missing_ok=True)
+
+    width = min(p.width for p in pieces)
+    scaled = [
+        p.resize((width, max(1, int(p.height * width / p.width))), Image.LANCZOS)
+        for p in pieces
+    ]
+    gap = 6
+    total_h = sum(p.height for p in scaled) + gap * (len(scaled) - 1)
+    canvas = Image.new("RGB", (width, total_h), "white")
+    y = 0
+    for p in scaled:
+        canvas.paste(p, (0, y))
+        y += p.height + gap
+    canvas.save(out_path, "WEBP", quality=WEBP_QUALITY, method=6)
+    return canvas.size
 
 
 def build_manifest(path: Path, sets: list, questions: list, sheets: list):
@@ -75,7 +112,11 @@ def build_manifest(path: Path, sets: list, questions: list, sheets: list):
         gray = np.asarray(img.convert("L"))
         for item in page["items"]:
             out = IMG_DIR / f"{item['id']}.webp"
-            bbox = crop_item(img, gray, item, out)
+            if item.get("parts"):
+                crop_parts(item["parts"], out)
+                bbox = item.get("x") or [0, 0, 0, 0]
+            else:
+                bbox = crop_item(img, gray, item, out)
             questions.append({
                 "id": item["id"],
                 "setId": meta["id"],

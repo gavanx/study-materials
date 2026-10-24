@@ -131,7 +131,7 @@
 
   /* 列表 */
   .list-item { display: flex; gap: 12px; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 10px; margin-bottom: 10px; cursor: pointer; }
-  .list-item img { width: 84px; height: 62px; object-fit: cover; object-position: top left; border-radius: 8px; border: 1px solid #f1f5f9; flex: 0 0 auto; }
+  .list-item img { width: 84px; height: 62px; object-fit: contain; background: #fff; border-radius: 8px; border: 1px solid #f1f5f9; flex: 0 0 auto; }
   .list-item .txt { flex: 1; min-width: 0; font-size: 13.5px; color: #374151; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
   .list-item .no { font-size: 12px; color: var(--soft); }
   .empty { text-align: center; color: var(--soft); padding: 40px 10px; font-size: 15px; line-height: 1.8; }
@@ -144,6 +144,10 @@
   .zoom img { width: 100%; background: #fff; border-radius: 8px; }
   .zoom .close { position: fixed; top: 12px; right: 12px; background: #fff; border: none; border-radius: 50%; width: 40px; height: 40px; font-size: 20px; cursor: pointer; }
 
+  .notice {
+    font-size: 12.5px; line-height: 1.6; color: #92400e; background: var(--warn-bg);
+    border: 1px solid var(--warn-line); border-radius: 10px; padding: 8px 11px; margin-bottom: 12px;
+  }
   .loading { text-align: center; color: var(--soft); padding: 60px 10px; }
   .toast {
     position: fixed; left: 50%; bottom: 96px; transform: translate(-50%, 10px);
@@ -340,6 +344,9 @@
         <span class="chip">${esc(set.shortName || set.name || '')}</span>
         <span class="chip">共 ${practicePool().length} 题可选</span>
       </div>
+      ${set.answerSource && set.answerSource !== 'official'
+        ? `<div class="notice">本卷原始答案缺失或与卷面不一致，答案由 AI 逐题重算${set.answerNote ? '：' + esc(set.answerNote) : ''}，建议家长抽查。</div>`
+        : ''}
       <div class="card">
         <div class="qhead">
           <span class="qno">第 ${esc(q.no)} 题</span>
@@ -615,8 +622,8 @@
 
     state.data.questions.forEach(q => state.byId.set(q.id, q));
     const total = practicePool().length;
-    const setNames = state.data.sets.map(s => s.shortName || s.name).join(' / ');
-    document.getElementById('sub').textContent = `${setNames} · 每天随机一题`;
+    document.getElementById('sub').textContent =
+      `${state.data.sets.length} 套卷 · ${total} 题 · 每天随机一题`;
     document.getElementById('streakNum').textContent = streakDays();
 
     loadDailyQuestion();
