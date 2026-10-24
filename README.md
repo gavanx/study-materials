@@ -27,6 +27,8 @@ grade-5/math/         五年级数学（含四升五衔接）
 grade-5/general-math/ 通用计算
 ├── calc-basic/       计算专项（基础）
 └── calc-improved/    计算专项（提高篇）
+
+quiz/                 每日一题（整卷拆成单题，按日期随机出题）
 ```
 
 ## 新增专题流程
