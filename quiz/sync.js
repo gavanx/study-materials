@@ -7,8 +7,8 @@
  * - 打开页面时拉取同一「家庭口令」下的事件，合并回本地。
  *
  * 事件模型（集合 quiz_events）：
- *   { family, kind: 'done'|'wrong'|'fav'|'unfav', qid, date, ok, ts, uid }
- * 合并规则：done 每天取最早一条；wrong 按次数累计；fav/unfav 取时间最新的一条。
+ *   { family, kind: 'done'|'undone'|'wrong'|'fav'|'unfav', qid, date, ok, ts, uid }
+ * 合并规则：done/undone 按 ts 升序回放，后者覆盖前者；wrong 按次数累计；fav/unfav 取时间最新的一条。
  */
 (function () {
   'use strict';
@@ -210,6 +210,10 @@
       if (!ev || !ev.kind) return;
       if (ev.kind === 'done' && ev.date && !progress[ev.date]) {
         progress[ev.date] = { qid: ev.qid, ok: !!ev.ok, ts: ev.ts };
+      } else if (ev.kind === 'undone' && ev.date) {
+        // 家长把当天题目恢复为未做：撤销这一天的打卡。
+        // 事件按 ts 升序回放，所以「重置后重做」的新 done 事件排在它后面，会正常重新记上。
+        delete progress[ev.date];
       } else if (ev.kind === 'wrong' && ev.qid) {
         const cur = wrong[ev.qid];
         if (!cur) wrong[ev.qid] = { ts: ev.ts, times: 1 };
