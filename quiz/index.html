@@ -36,6 +36,8 @@
   .sync-btn.on { color: var(--primary); }
   .streak b { display: block; font-size: 20px; }
   .streak span { font-size: 11.5px; }
+  /* 长按「连续打卡」可把今天的题目恢复为未做（家长拍讲解视频用），这里禁掉长按选字和系统菜单 */
+  .streak, .streak-box { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
 
   main { flex: 1; overflow-y: auto; padding: 16px 14px calc(84px + env(safe-area-inset-bottom)); }
   .wrap { max-width: 760px; margin: 0 auto; }
@@ -365,6 +367,54 @@
     const n = streakDays();
     document.querySelectorAll('[data-streak]').forEach(el => { el.textContent = n; });
   }
+
+  // 长按「连续打卡」→ 清掉今天的打卡，题目回到未作答（作答态本来只在内存里）
+  // 给孩子做题时界面没有任何多余入口；只有家长知道这个手势
+  function resetToday() {
+    const p = progress();
+    if (!p[state.date]) { toast('今天还没有打卡记录'); return; }
+    const ok = window.confirm(
+      '把今天的题目恢复为未做？\n\n' +
+      '会删掉今天的打卡记录（连续天数回退 1 天），' +
+      '之后重做会重新记一次。错题本和收藏不受影响。'
+    );
+    if (!ok) return;
+
+    delete p[state.date];
+    write(STORE.progress, p);
+    renderStreak();
+
+    state.extraIndex = 0;
+    state.review = null;
+    state.tab = 'today';
+    syncNav();
+    loadDailyQuestion();          // 这里会把 state.answered 一并清空
+    render();
+    window.scrollTo(0, 0);
+
+    if (window.QuizSync) QuizSync.push({ kind: 'undone', date: state.date });
+    toast('已恢复为未做');
+  }
+
+  function bindStreakReset() {
+    const targets = [
+      document.querySelector('header .streak'),
+      document.querySelector('.rail .streak-box')
+    ].filter(Boolean);
+
+    targets.forEach(el => {
+      let timer = 0;
+      const cancel = () => { if (timer) { clearTimeout(timer); timer = 0; } };
+      el.addEventListener('pointerdown', e => {
+        if (e.button !== undefined && e.button !== 0) return;
+        cancel();
+        timer = setTimeout(() => { timer = 0; resetToday(); }, 600);
+      });
+      ['pointerup', 'pointerleave', 'pointercancel'].forEach(ev => el.addEventListener(ev, cancel));
+      el.addEventListener('contextmenu', e => e.preventDefault());   // 别弹「拷贝/存储图片」
+    });
+  }
+  bindStreakReset();
 
   /* ---------- 错题本 / 收藏 ---------- */
   function wrongBook() { return read(STORE.wrong, {}); }
